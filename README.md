@@ -1,4 +1,4 @@
-# St.Gallen auslastung
+# St.Gallen Auslastung
 
 ## TEAM:
 - Silvana Waser
