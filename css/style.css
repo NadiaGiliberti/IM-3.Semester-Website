@@ -5,5 +5,47 @@
 }
 
 body {
-    background-color: rgb(243, 191, 255);
+    background-color: rgb(72, 1, 165);
+}
+
+h2 {
+    font-family: 'Arial', sans-serif;
+    font-size: 40px;
+    color: rgb(255, 241, 46);
+    margin-top: 20px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    /* Elemente vertikal anordnen */
+    justify-content: center;
+    align-items: center;
+}
+
+.karte {
+    display: flex;
+    margin-top: 30px;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 90%;
+}
+
+#karte_stgallen {
+    width: 100%;
+
+}
+
+#parkhaus_kreuzbleiche {
+    width: 3%;
+    position: absolute;
+    /* Ermöglicht das freie Positionieren */
+    top: 64%;
+    /* Vertikale Positionierung (Anpassen nach Bedarf) */
+    left: 21%;
+    /* Horizontale Positionierung (Anpassen nach Bedarf) */
+    transform: translate(-50%, -50%);
+    /* Zentriert das Bild an den angegebenen Koordinaten */
+
 }
