@@ -1,0 +1,25 @@
+<svg width="194" height="611" viewBox="0 0 194 611" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Layer_1" clip-path="url(#clip0_33_38)">
+<g id="Parkhaus">
+<path id="Hauswand" d="M193.12 0H0V611H193.12V0Z" fill="#894EDD"/>
+<path id="Tuere" d="M85.5799 432.73H108.68C118.7 432.73 126.84 440.87 126.84 450.89V611H67.4199V450.89C67.4199 440.87 75.5599 432.73 85.5799 432.73Z" fill="#FFFC22"/>
+<g id="Level">
+<path id="Level10" d="M178.27 14.4102H14.8601V42.9802H178.27V14.4102Z" fill="#FFFC22"/>
+<path id="Level9" d="M178.27 54.5098H14.8601V83.0798H178.27V54.5098Z" fill="#FFFC22"/>
+<path id="Level8" d="M178.27 94.6094H14.8601V123.179H178.27V94.6094Z" fill="#FFFC22"/>
+<path id="Level7" d="M178.27 134.711H14.8601V163.281H178.27V134.711Z" fill="#FFFC22"/>
+<path id="Level6" d="M178.27 174.811H14.8601V203.381H178.27V174.811Z" fill="#FFFC22"/>
+<path id="Level5" d="M178.27 214.91H14.8601V243.48H178.27V214.91Z" fill="#FFFC22"/>
+<path id="Level4" d="M178.27 255.01H14.8601V283.58H178.27V255.01Z" fill="#FFFC22"/>
+<path id="Level3" d="M178.27 295.109H14.8601V323.679H178.27V295.109Z" fill="#FFFC22"/>
+<path id="Level2" d="M178.27 335.211H14.8601V363.781H178.27V335.211Z" fill="#FFFC22"/>
+<path id="Level1" d="M178.27 375.311H14.8601V403.881H178.27V375.311Z" fill="#FFFC22"/>
+</g>
+</g>
+</g>
+<defs>
+<clipPath id="clip0_33_38">
+<rect width="193.12" height="611" fill="white"/>
+</clipPath>
+</defs>
+</svg>
