@@ -1,14 +1,13 @@
 // Daten von API verlinken
-const stgallen = document.querySelector('#stgallen');
+const apiDaten = document.querySelector('#apiDaten');
 
 //API URL's
 let urlPassanten = 'https://daten.stadt.sg.ch/api/explore/v2.1/catalog/datasets/fussganger-stgaller-innenstadt-vadianstrasse/records?order_by=datum_tag%20DESC&limit=20'; // Verlinkung zu API Datenbank (Passanten)
-let urlParkplatze = 'https://daten.stadt.sg.ch/api/explore/v2.1/catalog/datasets/freie-parkplatze-in-der-stadt-stgallen-pls/records?limit=20'; // Verlinkung zu API Datenbank (Parkhaus)
+let urlParkplaetze = 'https://daten.stadt.sg.ch/api/explore/v2.1/catalog/datasets/freie-parkplatze-in-der-stadt-stgallen-pls/records?limit=20'; // Verlinkung zu API Datenbank (Parkhaus)
 
 // Initialisierung der beiden API-Daten
 
 async function initPassanten() {
-    //let url = 'https://daten.stadt.sg.ch/api/explore/v2.1/catalog/datasets/fussganger-stgaller-innenstadt-vadianstrasse/records?order_by=datum_tag%20DESC&limit=20';
     let passanten = await fetchData(urlPassanten);
     console.log(passanten.results[0].summe);
     passanten.results.forEach(passant => {
@@ -18,19 +17,18 @@ async function initPassanten() {
 }
 
 
-async function initParkplatze() {
-    //let url2 = 'https://daten.stadt.sg.ch/api/explore/v2.1/catalog/datasets/freie-parkplatze-in-der-stadt-stgallen-pls/records?limit=20';
-    let parkplatze = await fetchData(urlParkplatze);
-    console.log(parkplatze.results[0].phname);
-    parkplatze.results.forEach(parkplatz => {
-        createParkplatzeItem(parkplatz);
+async function initParkplaetze() {
+    let parkplaetze = await fetchData(urlParkplaetze);
+    console.log(parkplaetze.results[0].phname);
+    parkplaetze.results.forEach(parkplatz => {
+        createParkplaetzeItem(parkplatz);
     });
 
 }
 
 // Aufruf der Initialisierungen
 initPassanten();
-initParkplatze();
+initParkplaetze();
 
 // oben die Grundfunktionen
 // ab hier Werkzeugkasten von Funktionen:
@@ -51,18 +49,18 @@ function createPassantenItem(passant) {
     })}
 </p>
         `;
-    stgallen.appendChild(item);
+    apiDaten.appendChild(item);
 }
 
 
-function createParkplatzeItem(parkplatz) {
+function createParkplaetzeItem(parkplatz) {
     let item = document.createElement('div');
-    item.classList.add('parkplatze');
+    item.classList.add('parkplaetze');
     item.innerHTML = `
     <h2>Parkplätze</h2>    
     <p>${parkplatz.belegung_prozent}% belegt im ${parkplatz.phname}</p>
         `;
-    stgallen.appendChild(item);
+    apiDaten.appendChild(item);
 }
 
 
