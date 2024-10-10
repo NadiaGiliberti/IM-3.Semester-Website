@@ -1,13 +1,13 @@
 @font-face {
     font-family: 'Poppins';
-    src: url('/schriften/Poppins-Regular.ttf') format('truetype');
+    src: url('../schriften/Poppins-Regular.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'Poppins';
-    src: url('/schriften/Poppins-Bold.ttf') format('truetype');
+    src: url('../schriften/Poppins-Bold.ttf') format('truetype');
     font-weight: bold;
     font-style: normal;
 }
@@ -21,7 +21,10 @@
 
 body {
     font-family: Poppins, sans-serif;
-    background-color: rgb(72, 1, 165);
+    background-image: url('../images/hintergrund_final.png'); 
+    background-size: cover;
+    background-position: top;
+    background-repeat: no-repeat;
 }
 
 
