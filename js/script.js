@@ -77,3 +77,27 @@
 //        console.log(error);
 //    }
 //}
+
+
+
+
+
+
+function updateParkplatzDaten() {
+    fetch('get_parkplaetze.php')
+        .then(response => response.json())
+        .then(data => {
+            let parkplatzHTML = '';
+            data.forEach(parkplatz => {
+                parkplatzHTML += `<h2>${parkplatz.phname}: ${parkplatz.shortfree} freie Parkplätze</h2>`;
+            });
+            document.getElementById("apiDaten").innerHTML = parkplatzHTML;
+        })
+        .catch(error => console.error('Fehler beim Abrufen der Parkdaten:', error));
+}
+
+// Aktualisiert die Daten alle 30 Sekunden
+setInterval(updateParkplatzDaten, 30000);
+
+// Führt die Funktion beim Laden der Seite sofort aus
+updateParkplatzDaten();
