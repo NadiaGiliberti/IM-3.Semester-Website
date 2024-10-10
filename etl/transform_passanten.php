@@ -20,7 +20,7 @@ foreach ($results as $passant) {
 $values = implode(", ", $transformedData);
 
 // SQL Insert Query vorbereiten
-$sql = "INSERT INTO Passanten (measured_at_new, datum_tag, summe) VALUES $values;";
+$sql = "INSERT INTO passanten (measured_at_new, datum_tag, summe) VALUES $values;";
 
 return $sql; // Ausgabe oder führe den Query in deiner Datenbank aus
 ?>

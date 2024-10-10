@@ -1,7 +1,7 @@
 <?php
 
 function fetchWeatherData() {
-    $url = "https://daten.stadt.sg.ch/api/explore/v2.1/catalog/datasets/freie-parkplatze-in-der-stadt-stgallen-pls/records?limit=20";
+    $url = "https://daten.stadt.sg.ch/api/explore/v2.1/catalog/datasets/freie-parkplatze-in-der-stadt-stgallen-pls/records?limit=20&timezone=Europe%2FZurich";
 
     // Initialisiert eine cURL-Sitzung
     $ch = curl_init($url);

@@ -5,7 +5,7 @@
 
 ////API URL's
 //let urlPassanten = 'https://daten.stadt.sg.ch/api/explore/v2.1/catalog/datasets/fussganger-stgaller-innenstadt-vadianstrasse/records?order_by=datum_tag%20DESC&limit=20'; // Verlinkung zu API Datenbank (Passanten)
-//let urlParkplaetze = 'https://daten.stadt.sg.ch/api/explore/v2.1/catalog/datasets/freie-parkplatze-in-der-stadt-stgallen-pls/records?limit=20'; // Verlinkung zu API Datenbank (Parkhaus)
+//let urlParkplaetze = 'https://daten.stadt.sg.ch/api/explore/v2.1/catalog/datasets/freie-parkplatze-in-der-stadt-stgallen-pls/records?limit=20&timezone=Europe%2FZurich'; // Verlinkung zu API Datenbank (Parkhaus)
 
 //// Initialisierung der beiden API-Daten
 

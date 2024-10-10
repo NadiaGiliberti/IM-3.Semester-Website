@@ -21,18 +21,31 @@
 
 body {
     font-family: Poppins, sans-serif;
-    background-image: url('../images/hintergrund_final.png'); 
+    background-image: url('../images/hintergrund_final.png');
     background-size: cover;
     background-position: top;
     background-repeat: no-repeat;
 }
+.header {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center; 
+    padding: 40px; 
+}
 
-
+.logo_cityflow {
+    width: 20%;
+}
 .container {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+p {
+    font-size: 1vw;
+    color: #FFFC22
 }
 
 .karte {
@@ -41,7 +54,6 @@ body {
     justify-content: center;
     align-items: center;
     position: relative;
-    width: 90%;
 }
 
 #karte_stgallen {
@@ -50,7 +62,7 @@ body {
 }
 
 #parkhaus_kreuzbleiche {
-    width: 3%;
+    width: 9%;
     position: absolute;
     /* Ermöglicht das freie Positionieren */
     top: 64%;

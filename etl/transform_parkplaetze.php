@@ -25,7 +25,7 @@ foreach ($results as $parkplatz) {
 $values = implode(", ", $transformedData);
 
 // SQL Insert Query vorbereiten
-$sql = "INSERT INTO Parkplaetze (phid, phname, phstate, shortmax, shortfree, lon, lat, zeitpunkt) VALUES $values;";
+$sql = "INSERT INTO parkplaetze (phid, phname, phstate, shortmax, shortfree, lon, lat, zeitpunkt) VALUES $values;";
 
 return $sql; // Ausgabe oder führe den Query in deiner Datenbank aus
 ?>
