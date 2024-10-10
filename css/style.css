@@ -1,24 +1,33 @@
+@font-face {
+    font-family: 'Poppins';
+    src: url('/schriften/Poppins-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Poppins';
+    src: url('/schriften/Poppins-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+
 body {
+    font-family: Poppins, sans-serif;
     background-color: rgb(72, 1, 165);
 }
 
-h2 {
-    font-family: 'Arial', sans-serif;
-    font-size: 40px;
-    color: rgb(255, 241, 46);
-    margin-top: 20px;
-}
 
 .container {
     display: flex;
     flex-direction: column;
-    /* Elemente vertikal anordnen */
     justify-content: center;
     align-items: center;
 }
