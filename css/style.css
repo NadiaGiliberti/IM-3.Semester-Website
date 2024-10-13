@@ -18,7 +18,6 @@
     box-sizing: border-box;
 }
 
-
 body {
     font-family: Poppins, sans-serif;
     background-image: url('../images/hintergrund_final.png');
@@ -26,16 +25,31 @@ body {
     background-position: top;
     background-repeat: no-repeat;
 }
+
+/* Header -> Logo Formatierung */
 .header {
     display: flex;
     justify-content: flex-end;
-    align-items: center; 
-    padding: 40px; 
+    align-items: center;
+    padding: 40px;
 }
 
 .logo_cityflow {
     width: 20%;
 }
+
+/* ab hier main */
+
+h1 {
+    font-size: 3vw;
+    color: #FFFC22;
+}
+
+p {
+    font-size: 1vw;
+    color: #FFFC22
+}
+
 .container {
     display: flex;
     flex-direction: column;
@@ -43,10 +57,18 @@ body {
     align-items: center;
 }
 
-p {
-    font-size: 1vw;
-    color: #FFFC22
+.startseite {
+    display: flex;
+    flex-direction: column;
 }
+
+.total {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+}
+
+
 
 .karte {
     display: flex;

@@ -1,103 +1,24 @@
+document.addEventListener('DOMContentLoaded', function () {
+    // URL der Website, von der die Parkplatzdaten abgefragt werden
+    const apiUrl = 'https://cityflow.nadiagiliberti.ch/etl/unload_parkplaetze';
 
-
-//// Daten von API verlinken
-//const apiDaten = document.querySelector('#apiDaten');
-
-////API URL's
-//let urlPassanten = 'https://daten.stadt.sg.ch/api/explore/v2.1/catalog/datasets/fussganger-stgaller-innenstadt-vadianstrasse/records?order_by=datum_tag%20DESC&limit=20'; // Verlinkung zu API Datenbank (Passanten)
-//let urlParkplaetze = 'https://daten.stadt.sg.ch/api/explore/v2.1/catalog/datasets/freie-parkplatze-in-der-stadt-stgallen-pls/records?limit=20&timezone=Europe%2FZurich'; // Verlinkung zu API Datenbank (Parkhaus)
-
-//// Initialisierung der beiden API-Daten
-
-//async function initPassanten() {
-//    let passanten = await fetchData(urlPassanten);
-//    console.log(passanten.results[0].summe);
-//    passanten.results.forEach(passant => {
-//       createPassantenItem(passant);
-//    });
-
-//}
-
-
-//async function initParkplaetze() {
-//    let parkplaetze = await fetchData(urlParkplaetze);
-//    console.log(parkplaetze.results[0].phname);
-//    parkplaetze.results.forEach(parkplatz => {
-//        createParkplaetzeItem(parkplatz);
-//    });
-
-//}
-
-//// Aufruf der Initialisierungen
-//initPassanten();
-//initParkplaetze();
-
-//// oben die Grundfunktionen
-//// ab hier Werkzeugkasten von Funktionen:
-
-//function createPassantenItem(passant) {
-//    let item = document.createElement('div');
-//    item.classList.add('passanten');
-//    item.innerHTML = `
-//        <h2>Passanten</h2>
-//        <p>Anzahl Passanten: ${passant.summe}</p>
-//        <p> Datum: ${new Date(passant.measured_at_new).toLocaleString('de-CH', {
-//        year: 'numeric',
-//        month: 'long',
-//        day: 'numeric',
-//        hour: '2-digit',
-//        minute: '2-digit',
-//        timeZone: 'Europe/Zurich'  // Schweizer Zeitzone
-//    })}
-//</p>
-//        `;
-//    apiDaten.appendChild(item);
-//}
-
-
-//function createParkplaetzeItem(parkplatz) {
-//    let item = document.createElement('div');
-//    item.classList.add('parkplaetze');
-//    item.innerHTML = `
-//    <h2>Parkplätze</h2>    
-//    <p>${parkplatz.belegung_prozent}% belegt im ${parkplatz.phname}</p>
-//        `;
-//    apiDaten.appendChild(item);
-//}
-
-
-//// Daten aus einer API holen
-//async function fetchData(url) {
-//    try {
-//        let response = await fetch(url);
-//        let data = await response.json();
-//        return data;
-//    }
-//    catch (error) {
-//        console.log(error);
-//    }
-//}
-
-
-
-
-
-
-function updateParkplatzDaten() {
-    fetch('get_parkplaetze.php')
-        .then(response => response.json())
+    // Führt einen Fetch-Request an die angegebene URL durch
+    fetch(apiUrl)
+        .then(response => response.json()) // Wandelt die Antwort in JSON um
         .then(data => {
-            let parkplatzHTML = '';
+            // Gibt die Wetterdaten für Bern in der Konsole aus
+            console.log('Parkplaetze St.Gallen', data);
+            let totalParkplaetze = 0;
             data.forEach(parkplatz => {
-                parkplatzHTML += `<h2>${parkplatz.phname}: ${parkplatz.shortfree} freie Parkplätze</h2>`;
+                totalParkplaetze += parseInt(parkplatz.shortfree, 10);
             });
-            document.getElementById("apiDaten").innerHTML = parkplatzHTML;
+
+            // Finde das H2-Element und setze die berechnete Summe
+            document.querySelector('h1.total_freie_parkplaetze').textContent = totalParkplaetze;
         })
-        .catch(error => console.error('Fehler beim Abrufen der Parkdaten:', error));
-}
+        .catch(error => {
+            // Gibt Fehlermeldungen in der Konsole aus, falls der Fetch-Request scheitert
+            console.error('Fehler beim Abrufen:', error);
+        });
+});
 
-// Aktualisiert die Daten alle 30 Sekunden
-setInterval(updateParkplatzDaten, 30000);
-
-// Führt die Funktion beim Laden der Seite sofort aus
-updateParkplatzDaten();
