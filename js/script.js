@@ -41,3 +41,53 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
+
+
+
+
+
+
+
+const slider = document.getElementById('slider');
+const sliderHandle = document.getElementById('slider-handle');
+const timeDisplay = document.getElementById('time');
+
+// Funktion zur Aktualisierung der Uhrzeit basierend auf der Position des Sliders
+function updateTime() {
+    const sliderWidth = slider.offsetWidth;
+    const handleWidth = sliderHandle.offsetWidth;
+    const handlePosition = parseFloat(sliderHandle.style.left) || (sliderWidth - handleWidth);
+    
+    // Berechne die Stunden basierend auf der Position des Handles
+    const hours = Math.round((handlePosition / (sliderWidth - handleWidth)) * 23); // 0-23 Stunden
+    const timeString = `${hours.toString().padStart(2, '0')}:00`;
+    
+    timeDisplay.innerText = timeString;
+}
+
+// Funktion zum Draggen des Sliders
+function onMouseMove(event) {
+    const sliderRect = slider.getBoundingClientRect();
+    let newLeft = event.clientX - sliderRect.left - (sliderHandle.offsetWidth / 2);
+    
+    // Begrenzen der Position des Handles
+    if (newLeft < 0) newLeft = 0;
+    if (newLeft > sliderRect.width - sliderHandle.offsetWidth) newLeft = sliderRect.width - sliderHandle.offsetWidth;
+
+    sliderHandle.style.left = newLeft + 'px';
+    updateTime();
+}
+
+// Maus-Events für den Slider
+sliderHandle.addEventListener('mousedown', () => {
+    document.addEventListener('mousemove', onMouseMove);
+});
+
+document.addEventListener('mouseup', () => {
+    document.removeEventListener('mousemove', onMouseMove);
+});
+
+// Initialisierung der Position und Uhrzeit
+sliderHandle.style.left = 'calc(100% - 50px)'; // Handle ganz rechts
+updateTime(); // Uhrzeit initialisieren
+

@@ -15,7 +15,7 @@
 
     <main>
         <div class="container" id="apiDaten">
-            
+
             <div class="startseite">
                 <div class="total">
                     <h1 class="total_passanten"></h1>
@@ -27,20 +27,35 @@
                 </div>
             </div>
 
-            <p>Die folgende Karte visualisiert das aktuelle Passantenaufkommen an der Vadianstrasse, St.Gallen und den
-                verfügbaren Parkplätzen in den umgelegenen Parkhäusern.</p>
+            <div class="text_visualisierung">
+                <p class="text_erklaehrung">Die folgende Karte visualisiert das aktuelle Passantenaufkommen an der
+                    Vadianstrasse,
+                    St.Gallen und den
+                    verfügbaren Parkplätzen in den umgelegenen Parkhäusern.</p>
+            </div>
 
             <div class="karte">
                 <img src="images/karte_final.png" alt="karte" id="karte_stgallen">
                 <img src="images/parkhaus_final.svg" alt="bild_parkhaus" id="parkhaus_kreuzbleiche">
             </div>
 
-            <p>Aktuell sind XXX Passanten in St.Gallen an der Vadianstrasse unterwegs. </p>
-            <p>Deshalb sind nur noch XXX Parkplätze in den umgebenen Parkhäusern verfügbar </p>
-            <p>Für diese Menge an Passanten sind eher weniger/viele/gleichviele Parkplätze frei wie üblich/als üblich.</p>
+            <div>
+                <div class="slider" id="slider">
+                    <div class="slider-handle" id="slider-handle"></div>
+                </div>
+                <div class="time" id="time">12:00</div>
+            </div>
 
+            <div class="auswertung">
+                <p>Aktuell sind XXX Passanten in St.Gallen an der Vadianstrasse unterwegs. </p>
+                <p>Deshalb sind nur noch XXX Parkplätze in den umgebenen Parkhäusern verfügbar </p>
+                <p>Für diese Menge an Passanten sind eher weniger/viele/gleichviele Parkplätze frei wie üblich/als
+                    üblich.
+                </p>
+            </div>
+
+            
         </div>
-
 
 
 

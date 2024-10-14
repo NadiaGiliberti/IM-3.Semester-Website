@@ -18,48 +18,63 @@
     box-sizing: border-box;
 }
 
+body,
+html {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
 body {
     font-family: Poppins, sans-serif;
     background-image: url('../images/hintergrund_final.png');
     background-size: cover;
     background-position: top;
     background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
 }
 
 /* Header -> Logo Formatierung */
 .header {
     display: flex;
-    justify-content: flex-end;  
-    width: 95%;
+    justify-content: flex-end;
+    width: 100%;
+
 }
 
 .logo_cityflow {
     width: 20%;
-    margin-top: 15px;
+    margin: 15px;
 }
 
 /* ab hier Allgmeines */
 
+
 .container {
     display: flex;
     flex-direction: column;
+    text-align: center;
     justify-content: center;
-    width: 95%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
 }
 
 h1 {
     color: #FFFC22;
-    font-size: 20vw; /* 8% */
-    letter-spacing: 50px;
-    margin-bottom: 5px;
-    margin-top: 2px;
+    font-size: 22vw;
+    letter-spacing: 20px;
     line-height: 1;
+    margin-top: -20px;
 
 }
 
 p {
     color: #FFFC22;
-    font-size: 30px;
+    font-size: 1.7vw;
     letter-spacing: 3px;
 }
 
@@ -72,39 +87,69 @@ p {
     display: flex;
     flex-direction: column;
     margin: 5px;
-    justify-content: center;
+    width: 85%;
+    justify-content: flex-start;
 }
 
 .total {
     display: flex;
     flex-direction: row;
-    align-items: baseline; /* Optional: zentriert die Inhalte vertikal */
-    justify-content: space-between; /* Verteilt h1 und p auf den verfügbaren Platz */
-    margin-bottom: 10px;   
+    align-items: baseline;
+    /* Optional: zentriert die Inhalte vertikal */
+    justify-content: space-between;
+    /* Verteilt h1 und p auf den verfügbaren Platz */
+    margin-bottom: 10px;
 }
 
 .total h1 {
-    flex-basis: 70%; /* Nutzt 70% des verfügbaren Platzes */
-    text-align: right; /* Links bündig */
+    flex-basis: 70%;
+    /* Nutzt 70% des verfügbaren Platzes */
+    text-align: right;
+    /* Links bündig */
 }
 
 .total p {
-    flex-basis: 30%; /* Nutzt 30% des verfügbaren Platzes */
-    text-align: left; /* Rechts bündig */
+    flex-basis: 30%;
+    /* Nutzt 30% des verfügbaren Platzes */
+    text-align: left;
+    /* Rechts bündig */
+}
+
+/* erklährungstext */
+.text_visualisierung {
+    display: flex;
+    margin-top: 15vh;
+    justify-content: center;
+}
+
+.text_erklaehrung {
+    width: 70%;
+
+}
+
+/* auswertung - journalistischer Beitrag*/
+.auswertung {
+    display: flex;
+    margin-top: 15vh;
+    justify-content: center;
+    flex-direction: column;
 }
 
 /* ab hier Karte St.Gallen inkl. Parkhäuser- / Passantenbidler */
 
 .karte {
+    width: 100%;
+    margin: 0;
+    padding: 0;
     display: flex;
-    margin-top: 30px;
     justify-content: center;
     align-items: center;
     position: relative;
+
 }
 
 #karte_stgallen {
-    width: 100%;
+    width: 120%;
 
 }
 
@@ -119,4 +164,54 @@ p {
     transform: translate(-50%, -50%);
     /* Zentriert das Bild an den angegebenen Koordinaten */
 
+}
+
+
+
+
+
+
+
+
+
+
+.slider {
+    width: calc(100% - 100px);
+    /* Gesamtbreite minus 50px links und rechts */
+    height: 50px;
+    /* Höhe des Sliders */
+    background-color: #FFFC22;
+    /* Hintergrundfarbe */
+    border-radius: 30px;
+    /* Runde Ecken des Sliders */
+    position: relative;
+    /* Setzt den Slider relativ für die Positionierung des Handles */
+    margin: 0 50px;
+    /* 50px Abstand links und rechts */
+}
+
+.slider-handle {
+    width: 50px;
+    /* Breite des Handles */
+    height: 50px;
+    /* Höhe des Handles */
+    background-color: #000;
+    /* Farbe des Handles */
+    border-radius: 50%;
+    /* Runde Form für den Handle */
+    position: absolute;
+    top: 0;
+    /* Positioniert den Handle vertikal auf der Oberkante des Sliders */
+    left: calc(100% - 50px);
+    /* Positioniert den Handle ganz rechts und stellt sicher, dass er nicht über den Slider hinausragt */
+    cursor: pointer;
+    z-index: 1;
+}
+
+.time {
+    font-size: 24px;
+    margin-top: 20px;
+    text-align: center;
+    font-weight: bold;
+    color: #FFFC22;
 }
