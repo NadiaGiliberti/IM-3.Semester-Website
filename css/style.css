@@ -29,46 +29,71 @@ body {
 /* Header -> Logo Formatierung */
 .header {
     display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    padding: 40px;
+    justify-content: flex-end;  
+    width: 95%;
 }
 
 .logo_cityflow {
     width: 20%;
+    margin-top: 15px;
 }
 
-/* ab hier main */
-
-h1 {
-    font-size: 3vw;
-    color: #FFFC22;
-}
-
-p {
-    font-size: 1vw;
-    color: #FFFC22
-}
+/* ab hier Allgmeines */
 
 .container {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    width: 95%;
 }
+
+h1 {
+    color: #FFFC22;
+    font-size: 20vw; /* 8% */
+    letter-spacing: 50px;
+    margin-bottom: 5px;
+    margin-top: 2px;
+    line-height: 1;
+
+}
+
+p {
+    color: #FFFC22;
+    font-size: 30px;
+    letter-spacing: 3px;
+}
+
+
+
+
+/* ab hier Startseite*/
 
 .startseite {
     display: flex;
     flex-direction: column;
+    margin: 5px;
+    justify-content: center;
 }
 
 .total {
     display: flex;
     flex-direction: row;
-    align-items: baseline;
+    align-items: baseline; /* Optional: zentriert die Inhalte vertikal */
+    justify-content: space-between; /* Verteilt h1 und p auf den verfügbaren Platz */
+    margin-bottom: 10px;   
 }
 
+.total h1 {
+    flex-basis: 70%; /* Nutzt 70% des verfügbaren Platzes */
+    text-align: right; /* Links bündig */
+}
 
+.total p {
+    flex-basis: 30%; /* Nutzt 30% des verfügbaren Platzes */
+    text-align: left; /* Rechts bündig */
+}
+
+/* ab hier Karte St.Gallen inkl. Parkhäuser- / Passantenbidler */
 
 .karte {
     display: flex;
