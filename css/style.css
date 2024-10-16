@@ -397,8 +397,8 @@ p {
 /* Styling des Datumseingabefeldes */
 .calendar-input {
     padding: 10px;
-    font-size: 16px;
-    border: 1px solid #ccc;
+    font-size: 160vw;
+    
     border-radius: 5px;
     cursor: pointer;
     outline: none;
@@ -417,34 +417,6 @@ p {
 }
 
 
-
-
-
-/* Style for the input value */
-::-webkit-datetime-edit {
-    color: red; /* Text color */
-    font-weight: bold; /* Text weight */
-}
-
-/* Style for the dropdown button */
-::-webkit-inner-spin-button,
-::-webkit-calendar-picker-indicator {
-    background-color: #4CAF50; /* Background color of the button */
-    color: white; /* Text color */
-    border-radius: 5px; /* Rounded corners */
-    padding: 5px; /* Padding */
-}
-
-/* Style for the calendar dropdown */
-::-webkit-calendar-picker-indicator {
-    cursor: pointer; /* Cursor changes to pointer */
-}
-
-/* Hover effects */
-::-webkit-inner-spin-button:hover,
-::-webkit-calendar-picker-indicator:hover {
-    background-color: #45a049; /* Darker shade on hover */
-}
 
 
 
