@@ -385,13 +385,14 @@ p {
 }
 
 .time {
-    font-size: 24px;
-    margin-top: 20px;
+    font-size: 1.5vw;
     text-align: center;
     font-weight: bold;
     color: #FFFC22;
     margin-left: 1vw; /* Optionaler Abstand zwischen Datum und Uhrzeit */
-    
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
 
 
 
@@ -424,29 +425,15 @@ p {
     display: flex;
     justify-content: flex-start;
     margin-left: 2vw;
+    margin-top: 1vw;
 }
 
 .timecalendar {
     display: flex;
-    justify-content: center; /* Zentriert die Inhalte horizontal */
-    align-items: center;     /* Zentriert die Inhalte vertikal */
-
+    align-items: center;  
+    justify-content: space-between; 
+    position: relative;
 }
 
 
 
-
-.timecalendar {
-    display: flex;
-    position: relative;  /* Ermöglicht absolute Positionierung des .time-Elements */
-}
-
-.calendar-container {
-    margin-left: 2vw;
-}
-
-.time {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-}

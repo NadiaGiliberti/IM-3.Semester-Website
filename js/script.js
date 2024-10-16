@@ -93,3 +93,13 @@ updateTime(); // Uhrzeit initialisieren
 
 
 
+// Kalender aktuelle Datum
+window.onload = function() {
+    const today = new Date();
+    const day = String(today.getDate()).padStart(2, '0');
+    const month = String(today.getMonth() + 1).padStart(2, '0'); // Monate sind 0-basiert
+    const year = today.getFullYear();
+    
+    const currentDate = `${year}-${month}-${day}`;
+    document.getElementById('datePicker').value = currentDate;
+};
