@@ -389,8 +389,7 @@ p {
 /* Styling des Datumseingabefeldes */
 .calendar-input {
     padding: 10px;
-    font-size: 160vw;
-    
+    font-size: 16px;    
     border-radius: 5px;
     cursor: pointer;
     outline: none;
