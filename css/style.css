@@ -46,15 +46,22 @@ body {
     display: flex;
     flex-direction: row;
     width: 100%;
+<<<<<<< Updated upstream
     height: 800px;
+=======
+    height: 60vw;
+>>>>>>> Stashed changes
     align-items: center;
 }
 
 .container_total {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     margin: 5px;
     width: 80%;
+    height: 100%;
+
 }
 
 .total {
@@ -68,14 +75,14 @@ body {
 }
 
 .total h1 {
-    flex-basis: 70%;
+    flex-basis: 75%;
     /* Nutzt 70% des verfügbaren Platzes */
     text-align: right;
     /* Links bündig */
 }
 
 .total p {
-    flex-basis: 30%;
+    flex-basis: 25%;
     /* Nutzt 30% des verfügbaren Platzes */
     text-align: left;
     /* Rechts bündig */
@@ -85,19 +92,33 @@ body {
 .container_logo {
     display: flex;
     flex-direction: column;
+    align-items: flex-end;     /* Bilder rechtsbündig ausrichten */
     width: 20%;
+    margin-top: 15px;
+    margin-right: 15px;
 }
 
+
 .logo_cityflow {
-    height: 20%;
-    width: auto;
+    width: 100%;
+    /* Volle Breite des Containers nutzen */
+    height: auto;
+    /* Seitenverhältnis beibehalten */
 }
 
 .pfeil {
+<<<<<<< Updated upstream
     height: 10%;
     width: auto;
 }
 
+=======
+    width: 50%;
+    /* Gleiche Breite wie das Logo */
+    height: auto;
+    /* Seitenverhältnis beibehalten */
+}
+>>>>>>> Stashed changes
 
 
 
@@ -148,8 +169,8 @@ h3 {
 
 p {
     color: #FFFC22;
-    font-size: 1.7vw;
-    letter-spacing: 0.5vw;
+    font-size: 1.5vw;
+    letter-spacing: 0.4vw;
 }
 
 
@@ -320,7 +341,10 @@ p {
     position: absolute;
     bottom: 0;
     left: 0;
+<<<<<<< Updated upstream
     z-index: 2;
+=======
+>>>>>>> Stashed changes
     max-height: 100%;
     /* Maximiere die Höhe, sodass das Bild innerhalb des Containers bleibt */
     object-fit: contain;
@@ -332,9 +356,9 @@ p {
     position: absolute;
     left: 60%;
     bottom: 0;
-    z-index: 2;
 }
 
+<<<<<<< Updated upstream
 #haeuser_hintergrund {
     position: absolute;
     /* Absolut positioniert im Kontext des Containers */
@@ -347,6 +371,8 @@ p {
     z-index: -1;
     /* Hinter anderen Inhalten */
 }
+=======
+>>>>>>> Stashed changes
 
 /*SLIDER ZEIT UND KALENDER*/
 
@@ -444,6 +470,7 @@ p {
     display: flex;
     position: relative;  /* Ermöglicht absolute Positionierung des .time-Elements */
 }
+<<<<<<< Updated upstream
 
 .calendar-container {
     margin-left: 2vw;
@@ -456,4 +483,15 @@ p {
 }
 
 
+=======
+>>>>>>> Stashed changes
 
+.calendar-container {
+    margin-left: 2vw;
+}
+
+.time {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
