@@ -365,7 +365,11 @@ p {
     color: black; /* Textfarbe für besseren Kontrast */
     width: 100%;
     max-width: 200px;
+    text-align: center;
 }
+
+
+
 
 
 
