@@ -30,12 +30,14 @@ body {
     font-family: Poppins, sans-serif;
     background-image: url('../images/hintergrund_final.png');
     background-size: cover;
-    background-position: top;
+    background-position: top; /* Hintergrund zentrieren */
     background-repeat: no-repeat;
-    display: flex;
-    flex-direction: column;
+    margin: 0;
+    padding: 0;
     overflow-x: hidden;
+    position: relative;
 }
+
 
 /* Header -> Logo Formatierung */
 .header {
@@ -52,6 +54,11 @@ body {
 
 /* ab hier Allgmeines */
 
+
+main {
+    position: relative; /* Macht den Main-Container zum Bezugspunkt für das Häuser-Bild */
+    min-height: 100vh; /* Stellt sicher, dass der Inhalt mindestens die Höhe des Bildschirms hat */
+}
 
 .container {
     display: flex;
@@ -72,10 +79,25 @@ h1 {
 
 }
 
+h2 {
+    /* TITEL LEGENDE */
+    color: #FFFC22;
+    font-size: 5vw;
+    letter-spacing: 2vw;
+}
+
+h3 {
+    /* Grössere Wörter in p Text */
+    color: #FFFC22;
+    font-size: 2vw;
+    letter-spacing: 1vw;
+
+}
+
 p {
     color: #FFFC22;
     font-size: 1.7vw;
-    letter-spacing: 3px;
+    letter-spacing: 0.5vw;
 }
 
 
@@ -115,16 +137,41 @@ p {
     /* Rechts bündig */
 }
 
-/* erklährungstext */
-.text_visualisierung {
+/* Legende */
+.container_legende {
     display: flex;
     margin-top: 15vh;
-    justify-content: center;
+    height: 60%;
+
+}
+
+#text_legende {
+    writing-mode: vertical-rl;
+    /* Textfluss von oben nach unten, von rechts nach links */
+    transform: rotate(180deg);
+    width: 15%;
+}
+
+.bilder_legenden {
+    display: flex;
+    width: 40%;
+    flex-direction: column;
+
+}
+
+#legende_parkhaeuser {
+    width: 60%;
+}
+
+#legende_passanten {
+    width: 90%;
 }
 
 .text_erklaehrung {
-    width: 70%;
-
+    width: 40%; /* Breite des Textcontainers */
+    text-align: right; /* Text rechtsbündig ausrichten */
+    line-height: 1.5; /* Zeilenhöhe für bessere Lesbarkeit */
+    margin-left: auto; /* Automatischer Linksmargin, um den Text nach rechts zu schieben */
 }
 
 /* auswertung - journalistischer Beitrag*/
@@ -139,7 +186,10 @@ p {
 
 .karte {
     width: 100%;
-    margin: 0;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 10vh;
+    margin-bottom: 5vh;
     padding: 0;
     display: flex;
     justify-content: center;
@@ -149,31 +199,116 @@ p {
 }
 
 #karte_stgallen {
-    width: 120%;
+    width: 100%;
+    height: auto;
 
 }
 
-#parkhaus_kreuzbleiche {
-    width: 9%;
+.bilder_parkhaeuser {
+    width: 14%;
     position: absolute;
     /* Ermöglicht das freie Positionieren */
-    top: 64%;
-    /* Vertikale Positionierung (Anpassen nach Bedarf) */
-    left: 21%;
-    /* Horizontale Positionierung (Anpassen nach Bedarf) */
     transform: translate(-50%, -50%);
     /* Zentriert das Bild an den angegebenen Koordinaten */
+}
 
+#parkhaus_p21 {
+    top: 23%;
+    /* Vertikale Positionierung (Anpassen nach Bedarf) */
+    left: 66%;
+    /* Horizontale Positionierung (Anpassen nach Bedarf) */
+    z-index: 1;
+}
+
+#parkhaus_p22 {
+    top: 2%;
+    /* Vertikale Positionierung (Anpassen nach Bedarf) */
+    left: 65%;
+    /* Horizontale Positionierung (Anpassen nach Bedarf) */
+}
+
+#parkhaus_p23 {
+    top: 4%;
+    /* Vertikale Positionierung (Anpassen nach Bedarf) */
+    left: 72%;
+    /* Horizontale Positionierung (Anpassen nach Bedarf) */
+}
+
+#parkhaus_p24 {
+    top: 18%;
+    /* Vertikale Positionierung (Anpassen nach Bedarf) */
+    left: 41.5%;
+    /* Horizontale Positionierung (Anpassen nach Bedarf) */
+}
+
+#parkhaus_p25 {
+    top: 50%;
+    /* Vertikale Positionierung (Anpassen nach Bedarf) */
+    left: 9%;
+    /* Horizontale Positionierung (Anpassen nach Bedarf) */
+}
+
+#parkhaus_p31 {
+    top: 22.5%;
+    /* Vertikale Positionierung (Anpassen nach Bedarf) */
+    left: 87%;
+    /* Horizontale Positionierung (Anpassen nach Bedarf) */
+}
+
+#parkhaus_p32 {
+    top: 50%;
+    /* Vertikale Positionierung (Anpassen nach Bedarf) */
+    left: 79%;
+    /* Horizontale Positionierung (Anpassen nach Bedarf) */
+}
+
+#parkhaus_p33 {
+    top: 33%;
+    /* Vertikale Positionierung (Anpassen nach Bedarf) */
+    left: 86%;
+    /* Horizontale Positionierung (Anpassen nach Bedarf) */
+    z-index: 1;
+}
+
+.bilder_passanten {
+
+    width: 18%;
+    position: absolute;
+    /* Ermöglicht das freie Positionieren */
+    transform: translate(-50%, -50%);
+    /* Zentriert das Bild an den angegebenen Koordinaten */
+    top: 52%;
+    /* Vertikale Positionierung (Anpassen nach Bedarf) */
+    left: 50%;
+    /* Horizontale Positionierung (Anpassen nach Bedarf) */
 }
 
 
+/*BILDER ENDE */
+.images_end {
+    position: relative;
+}
 
+#bild_mann {
+    width: 30%;
+    z-index: 2;
+}
 
+#bild_frau {
+    width: 10%;
+    z-index: 2;
+    transform: scaleX(-1);
+}
 
+#haeuser_hintergrund {
+    position: absolute; /* Absolut positioniert im Kontext des Containers */
+    bottom: 0; /* Am unteren Ende des Containers */
+    left: 0; /* Am linken Rand */
+    width: 100%; /* Bild über die gesamte Breite strecken */
+    z-index: -1; /* Hinter anderen Inhalten */
+}
 
-
-
-
+/*SLIDER ZEIT*/
 
 .slider {
     width: calc(100% - 100px);
