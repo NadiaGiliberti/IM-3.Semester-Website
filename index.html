@@ -13,11 +13,11 @@
         <div class="startseite">
             <div class="container_total">
                 <div class="total">
-                    <h1 class="total_passanten"></h1>
+                    <h1 class="total_passanten" id="total_passanten_h1"></h1>
                     <p> Passanten</p>
                 </div>
                 <div class="total">
-                    <h1 class="total_freie_parkplaetze"></h1>
+                    <h1 class="total_freie_parkplaetze" id="total_freie_parkplaetze_h1"></h1>
                     <p> freie Parkplätze</p>
                 </div>
             </div>
@@ -32,28 +32,41 @@
         <div class="container" id="apiDaten">
 
             <div class="container_legende">
-                <h2 id="text_legende">LEGENDE</h2>
+                <div id="text_legende">
+                    <h2>LEGENDE</h2>
+                </div>
                 <div class="bilder_legenden">
-                    <img src="images/parkhaus_legende.png" alt="Legende Parkhäuser" id="legende_parkhäuser">
-                    <img src="images/passanten_legende.png" alt="Legende Passanten" id="legende_passanten">
+                    <div>
+                        <p class="legende_titel">PARKHAUS STAND</p>
+                        <p class="legende_untertitel">ANZAHL FREIER PARKPLÄTZE</p>
+                        <img src="images/legende_parkhaeuser.png" alt="Legende Parkhäuser" id="legende_parkhaeuser">
+                    </div>
+                    <div>
+                        <p class="legende_titel">PASSANTEN STAND</p>
+                        <p class="legende_untertitel">ANZAHL PASSANTEN IN DER INNENSTADT</p>
+                        <img src="images/legende_passanten.png" alt="Legende Passanten" id="legende_passanten">
+                    </div>
                 </div>
                 <div class="text_erklaehrung">
-                    <p>Die folgende Karte visualisiert das aktuelle Passantenaufkommen an der
-                        Vadianstrasse, St.Gallen und den verfügbaren Parkplätzen in den umgelegenen Parkhäusern.</p>
+                    <p>Die folgende Karte<br>visualisiert das</p>
+                    <h3>aktuelle<br>Passanten</h3>
+                    <p>aufkommen<br>an der<br>Vadianstrasse,<br>St.Gallen und den</p>
+                    <h3>verfügbaren<br>Parkplätzen</h3>
+                    <p>in den<br>Parkhäusern.</p>
                 </div>
             </div>
 
             <div class="karte">
                 <img src="images/karte_final.png" alt="karte" id="karte_stgallen">
-                <img src="images/parkhaus_final.svg" alt="bild_parkhaus" class="bilder_parkhaeuser" id="parkhaus_p21">
-                <img src="images/parkhaus_final.svg" alt="bild_parkhaus" class="bilder_parkhaeuser" id="parkhaus_p22">
-                <img src="images/parkhaus_final.svg" alt="bild_parkhaus" class="bilder_parkhaeuser" id="parkhaus_p23">
-                <img src="images/parkhaus_final.svg" alt="bild_parkhaus" class="bilder_parkhaeuser" id="parkhaus_p24">
-                <img src="images/parkhaus_final.svg" alt="bild_parkhaus" class="bilder_parkhaeuser" id="parkhaus_p25">
-                <img src="images/parkhaus_final.svg" alt="bild_parkhaus" class="bilder_parkhaeuser" id="parkhaus_p31">
-                <img src="images/parkhaus_final.svg" alt="bild_parkhaus" class="bilder_parkhaeuser" id="parkhaus_p32">
-                <img src="images/parkhaus_final.svg" alt="bild_parkhaus" class="bilder_parkhaeuser" id="parkhaus_p33">
-                <img src="images/passanten.svg" alt="bild_passanten" class="bilder_passanten">
+                <img src="images/stockwerke_5.png" alt="bild_parkhaus" class="bilder_parkhaeuser" id="parkhaus_p21">
+                <img src="images/stockwerke_5.png" alt="bild_parkhaus" class="bilder_parkhaeuser" id="parkhaus_p22">
+                <img src="images/stockwerke_5.png" alt="bild_parkhaus" class="bilder_parkhaeuser" id="parkhaus_p23">
+                <img src="images/stockwerke_5.png" alt="bild_parkhaus" class="bilder_parkhaeuser" id="parkhaus_p24">
+                <img src="images/stockwerke_5.png" alt="bild_parkhaus" class="bilder_parkhaeuser" id="parkhaus_p25">
+                <img src="images/stockwerke_5.png" alt="bild_parkhaus" class="bilder_parkhaeuser" id="parkhaus_p31">
+                <img src="images/stockwerke_5.png" alt="bild_parkhaus" class="bilder_parkhaeuser" id="parkhaus_p32">
+                <img src="images/stockwerke_5.png" alt="bild_parkhaus" class="bilder_parkhaeuser" id="parkhaus_p33">
+                <img src="images/passanten_5.png" alt="bild_passanten" class="bilder_passanten">
             </div>
 
             <div>
@@ -67,24 +80,29 @@
                     <div class="time" id="time">12:00</div>
                 </div>
 
+                <div class="container_schluss">
+                    <div class="container_mann">
+                        <img src="images/mann.png" alt="bild mann" id="bild_mann">
+                    </div>
+                    <div class="auswertung_frau">
+                        <div class="auswertung_text">
+                            <p>Aktuell sind <span class="total_passanten" id="total_passanten_schluss"></span>
+                                Passanten
+                                in St.Gallen an<br>der Vadianstrasse unterwegs.</p>
+                            <p>Deshalb sind noch total <span class="total_freie_parkplaetze"
+                                    id="total_parkplaetze_schluss"></span> Parkplätze<br>in den umgebenen Parkhäusern
+                                verfügbar </p>
+                            <p>Für diese Menge an Passanten sind eher<br><span class="vergleich">weniger/viele/gleich
+                                    viele</span><br>Parkplätze frei als üblich.</p>
+                        </div>
+                        <div class="container_frau">
+                            <img src="images/frau.png" alt="bild frau" id="bild_frau">
+                        </div>
+                    </div>
 
-
-
-            <div class="auswertung">
-                <p>Aktuell sind XXX Passanten in St.Gallen an der Vadianstrasse unterwegs. </p>
-                <p>Deshalb sind nur noch XXX Parkplätze in den umgebenen Parkhäusern verfügbar </p>
-                <p>Für diese Menge an Passanten sind eher weniger/viele/gleichviele Parkplätze frei wie üblich/als
-                    üblich.
-                </p>
-            </div>
-
-
-            <div class="images_end">
-                <img src="images/mann.png" alt="bild mann" id="bild_mann">
-                <img src="images/frau.png" alt="bild frau" id="bild_frau">
+                </div>
             </div>
         </div>
-
 
 
     </main>

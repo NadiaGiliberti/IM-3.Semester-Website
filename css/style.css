@@ -22,8 +22,6 @@ body,
 html {
     width: 100%;
     height: 100%;
-    margin: 0;
-    padding: 0;
 }
 
 body {
@@ -32,9 +30,7 @@ body {
     background-size: cover;
     background-position: top;
     /* Hintergrund zentrieren */
-    background-repeat: no-repeat;
-    margin: 0;
-    padding: 0;
+    background-repeat: repeat;
     overflow-x: hidden;
     position: relative;
 }
@@ -55,8 +51,7 @@ body {
     flex-direction: column;
     justify-content: center;
     margin: 5px;
-    width: 80%;
-    height: 100%;
+    width: 100%;
 
 }
 
@@ -64,21 +59,20 @@ body {
     display: flex;
     flex-direction: row;
     align-items: baseline;
-    /* Optional: zentriert die Inhalte vertikal */
-    justify-content: space-between;
-    /* Verteilt h1 und p auf den verfügbaren Platz */
-    margin-bottom: 10px;
 }
 
-.total h1 {
-    flex-basis: 75%;
+#total_passanten_h1,
+#total_freie_parkplaetze_h1{
+    display: flex;
+    justify-content: flex-end;
+    width: 75%;
     /* Nutzt 70% des verfügbaren Platzes */
     text-align: right;
     /* Links bündig */
 }
 
 .total p {
-    flex-basis: 25%;
+    width: 25%;
     /* Nutzt 30% des verfügbaren Platzes */
     text-align: left;
     /* Rechts bündig */
@@ -88,12 +82,15 @@ body {
 .container_logo {
     display: flex;
     flex-direction: column;
-    align-items: flex-end; /* Bilder rechtsbündig ausrichten */
-    justify-content: space-between; /* Pfeil nach unten ausrichten */
+    align-items: flex-end;
+    /* Bilder rechtsbündig ausrichten */
+    justify-content: space-between;
+    /* Pfeil nach unten ausrichten */
     width: 20%;
     margin-top: 15px;
     margin-right: 15px;
-    height: 100%; /* Höhe des Containers auf 100% des Viewports */
+    height: 100%;
+    /* Höhe des Containers auf 100% des Viewports */
 }
 
 
@@ -109,8 +106,25 @@ body {
     /* Gleiche Breite wie das Logo */
     height: auto;
     /* Seitenverhältnis beibehalten */
+    cursor: pointer;
+    animation: bounce 0.8s infinite;
+    /* Wendet die bounce-Animation an */
 }
 
+/* Definition der bounce-Animation */
+@keyframes bounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+        /* Start- und Endposition */
+    }
+
+    50% {
+        transform: translateY(-5px);
+        /* Höchster Punkt der Animation */
+    }
+}
 
 
 
@@ -137,9 +151,8 @@ main {
 h1 {
     color: #FFFC22;
     font-size: 22vw;
-    letter-spacing: 20px;
+    letter-spacing: 1.5vw;
     line-height: 1;
-    margin-top: -20px;
 
 }
 
@@ -148,20 +161,25 @@ h2 {
     color: #FFFC22;
     font-size: 5vw;
     letter-spacing: 2vw;
+    font-weight: bold;
 }
 
+.vergleich,
+#total_parkplaetze_schluss,
+#total_passanten_schluss,
 h3 {
     /* Grössere Wörter in p Text */
     color: #FFFC22;
     font-size: 2vw;
     letter-spacing: 1vw;
+    font-weight: bold;
 
 }
 
 p {
     color: #FFFC22;
     font-size: 1.5vw;
-    letter-spacing: 0.4vw;
+    letter-spacing: 0.2vw;
 }
 
 
@@ -170,50 +188,58 @@ p {
 /* AB HIER LEGENDE */
 .container_legende {
     display: flex;
-    margin-top: 15vh;
-    height: 60%;
-
+    margin-top: 30%;
+    width: 100%;
+    background-image: url('../images/rechteck_violett.png');
+    background-size: contain;
+    /* Das Bild skaliert, um in den Container zu passen, ohne es zu verzerren */
+    background-position: center;
+    /* Zentriert das Bild */
+    flex-direction: row;
+    padding-left: 4%;
+    padding-right: 4%;
+    padding-top: 6%;
+    padding-bottom: 6%;
+    align-content: center;
 }
 
 #text_legende {
     writing-mode: vertical-rl;
     /* Textfluss von oben nach unten, von rechts nach links */
     transform: rotate(180deg);
-    width: 15%;
+    width: 10%;
 }
 
 .bilder_legenden {
     display: flex;
-    width: 40%;
+    width: 42.5%;
+    height: 100%;
     flex-direction: column;
+    margin-top: 5%;
+    margin-bottom: 5%;
 
 }
 
-#legende_parkhaeuser {
-    width: 60%;
-}
 
+#legende_parkhaeuser,
 #legende_passanten {
-    width: 90%;
+    width: 80%;
+    /* Gleiche Breite für beide Bilder */
+    height: auto;
+    /* Seitenverhältnis beibehalten */
 }
 
 .text_erklaehrung {
-    width: 40%;
+    display: flex;
+    width: 42.5%;
     /* Breite des Textcontainers */
     text-align: right;
     /* Text rechtsbündig ausrichten */
-    line-height: 1.5;
-    /* Zeilenhöhe für bessere Lesbarkeit */
-    margin-left: auto;
-    /* Automatischer Linksmargin, um den Text nach rechts zu schieben */
-}
-
-/* AUSWERTUNGSTEXT - JOURNALISTISCHER BEITRAG*/
-.auswertung {
-    display: flex;
-    margin-top: 15vh;
-    justify-content: center;
     flex-direction: column;
+    justify-content: space-between;
+    margin-top: 7%;
+    margin-bottom: 7%;
+
 }
 
 /* AB HIER KARTE ST:GALLEN INKL. PARKHÄUSER / PASSANTENBILDER */
@@ -239,7 +265,7 @@ p {
 }
 
 .bilder_parkhaeuser {
-    width: 14%;
+    width: 4%;
     position: absolute;
     /* Ermöglicht das freie Positionieren */
     transform: translate(-50%, -50%);
@@ -247,59 +273,59 @@ p {
 }
 
 #parkhaus_p21 {
-    top: 23%;
+    top: 22%;
     /* Vertikale Positionierung (Anpassen nach Bedarf) */
-    left: 66%;
+    left: 65%;
     /* Horizontale Positionierung (Anpassen nach Bedarf) */
     z-index: 1;
 }
 
 #parkhaus_p22 {
-    top: 2%;
+    top: 1.5%;
     /* Vertikale Positionierung (Anpassen nach Bedarf) */
-    left: 65%;
+    left: 64%;
     /* Horizontale Positionierung (Anpassen nach Bedarf) */
 }
 
 #parkhaus_p23 {
-    top: 4%;
+    top: 3.5%;
     /* Vertikale Positionierung (Anpassen nach Bedarf) */
-    left: 72%;
+    left: 71%;
     /* Horizontale Positionierung (Anpassen nach Bedarf) */
 }
 
 #parkhaus_p24 {
     top: 18%;
     /* Vertikale Positionierung (Anpassen nach Bedarf) */
-    left: 41.5%;
+    left: 40%;
     /* Horizontale Positionierung (Anpassen nach Bedarf) */
 }
 
 #parkhaus_p25 {
-    top: 50%;
+    top: 49%;
     /* Vertikale Positionierung (Anpassen nach Bedarf) */
-    left: 9%;
+    left: 8%;
     /* Horizontale Positionierung (Anpassen nach Bedarf) */
 }
 
 #parkhaus_p31 {
-    top: 22.5%;
+    top: 22%;
     /* Vertikale Positionierung (Anpassen nach Bedarf) */
-    left: 87%;
+    left: 86%;
     /* Horizontale Positionierung (Anpassen nach Bedarf) */
 }
 
 #parkhaus_p32 {
-    top: 50%;
+    top: 48%;
     /* Vertikale Positionierung (Anpassen nach Bedarf) */
-    left: 79%;
+    left: 78%;
     /* Horizontale Positionierung (Anpassen nach Bedarf) */
 }
 
 #parkhaus_p33 {
-    top: 33%;
+    top: 32%;
     /* Vertikale Positionierung (Anpassen nach Bedarf) */
-    left: 86%;
+    left: 85%;
     /* Horizontale Positionierung (Anpassen nach Bedarf) */
     z-index: 1;
 }
@@ -318,33 +344,57 @@ p {
 }
 
 
-/*BILDER AM WEBSEITEN ENDE */
-.images_end {
-    position: relative;
-    overflow: hidden;
-    /* Verhindert, dass Inhalte (wie das Bild) außerhalb des Containers angezeigt werden */
-    height: 100vh;
-    /* Begrenze die Höhe des Containers */
+/*BILDER und AUSWERTUNG AM WEBSEITEN ENDE */
+
+/* AUSWERTUNGSTEXT - JOURNALISTISCHER BEITRAG*/
+.container_schluss {
+    display: flex;
+    flex-direction: row;
+    width: 90%;
+    margin-top: 7%;
+    height: auto;
+}
+
+.container_mann {
+    display: flex;
+    align-items: flex-start;
+    height: 100%;
+    width: 45%;
 }
 
 #bild_mann {
-    width: 30%;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    max-height: 100%;
-    /* Maximiere die Höhe, sodass das Bild innerhalb des Containers bleibt */
-    object-fit: contain;
-    /* Hält das Bild proportional innerhalb des Containers */
+    width: 70%;
+    height: auto;
+
+}
+
+.auswertung_frau {
+    display: flex;
+    flex-direction: column;
+    width: 55%;
+
+}
+
+.auswertung_text {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    height: 50%;
+    justify-content: space-between;
+
+}
+
+.container_frau {
+    display: flex;
+    align-items: flex-end;
+    height: 50%;
+    justify-content: center;
 }
 
 #bild_frau {
-    width: 20%;
-    position: absolute;
-    left: 60%;
-    bottom: 0;
+    width: 30%;
+    height: auto;
 }
-
 
 /*SLIDER ZEIT UND KALENDER*/
 
@@ -379,11 +429,6 @@ p {
     /* Positioniert den Handle ganz rechts und stellt sicher, dass er nicht über den Slider hinausragt */
     cursor: pointer;
     z-index: 1;
-
-
-
-
-
 }
 
 .time {
@@ -391,17 +436,11 @@ p {
     text-align: center;
     font-weight: bold;
     color: #FFFC22;
-    margin-left: 1vw; /* Optionaler Abstand zwischen Datum und Uhrzeit */
+    margin-left: 1vw;
+    /* Optionaler Abstand zwischen Datum und Uhrzeit */
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-
-
-
-
-
-
-
 }
 
 
@@ -432,10 +471,7 @@ p {
 
 .timecalendar {
     display: flex;
-    align-items: center;  
-    justify-content: space-between; 
+    align-items: center;
+    justify-content: space-between;
     position: relative;
 }
-
-
-

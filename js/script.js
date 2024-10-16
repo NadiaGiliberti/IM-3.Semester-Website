@@ -16,6 +16,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
             // Finde das H2-Element und setze die berechnete Summe
             document.querySelector('h1.total_freie_parkplaetze').textContent = totalParkplaetze;
+            document.querySelector('span.total_freie_parkplaetze').textContent = totalParkplaetze;
+
         })
         .catch(error => {
             // Gibt Fehlermeldungen in der Konsole aus, falls der Fetch-Request scheitert
@@ -24,30 +26,38 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Fetch für die zweite API
     fetch(apiUrl2)
-    .then(response => response.json())
-    .then(data2 => {
-        // Gibt die Passanten-Daten für St.Gallen in der Konsole aus
-        console.log('Passanten St.Gallen', data2);
+        .then(response => response.json())
+        .then(data2 => {
+            // Gibt die Passanten-Daten für St.Gallen in der Konsole aus
+            console.log('Passanten St.Gallen', data2);
 
-        // Greife auf das erste Element im Array zu und hole den Wert der 'summe'
-        const totalPassanten = data2[0].summe;
+            // Greife auf das erste Element im Array zu und hole den Wert der 'summe'
+            const totalPassanten = data2[0].summe;
 
-        // Finde das H1-Element und setze die berechnete Summe der Passanten
-        document.querySelector('h1.total_passanten').textContent = totalPassanten;
-    })
-    .catch(error => {
-        // Gibt Fehlermeldungen in der Konsole aus, falls der Fetch-Request scheitert
-        console.error('Fehler beim Abrufen der Passanten-Daten:', error);
+            // Finde das H1-Element und setze die berechnete Summe der Passanten
+            document.querySelector('h1.total_passanten').textContent = totalPassanten;
+            document.querySelector('span.total_passanten').textContent = totalPassanten;
+       
+        })
+        .catch(error => {
+            // Gibt Fehlermeldungen in der Konsole aus, falls der Fetch-Request scheitert
+            console.error('Fehler beim Abrufen der Passanten-Daten:', error);
+        });
+
+
+//SCROLLFUNKTION ZUR KARTE BEI KLICK AUF PFEIL
+
+    const arrow = document.querySelector('.pfeil'); // Wähle das Pfeilbild aus
+    arrow.addEventListener('click', function () {
+        const karte = document.getElementById('karte_stgallen');
+        
+        const y = karte.getBoundingClientRect().top + window.scrollY - (window.innerHeight / 2 - karte.clientHeight / 2);
+
+        window.scrollTo({ top: y, behavior: 'smooth' }); // Sanftes Scrollen
     });
-});
 
 
-
-
-
-
-
-
+//SLIDER FÜR DIE UHRZEIT
 const slider = document.getElementById('slider');
 const sliderHandle = document.getElementById('slider-handle');
 const timeDisplay = document.getElementById('time');
@@ -57,11 +67,11 @@ function updateTime() {
     const sliderWidth = slider.offsetWidth;
     const handleWidth = sliderHandle.offsetWidth;
     const handlePosition = parseFloat(sliderHandle.style.left) || (sliderWidth - handleWidth);
-    
+
     // Berechne die Stunden basierend auf der Position des Handles
     const hours = Math.round((handlePosition / (sliderWidth - handleWidth)) * 23); // 0-23 Stunden
     const timeString = `${hours.toString().padStart(2, '0')}:00`;
-    
+
     timeDisplay.innerText = timeString;
 }
 
@@ -69,7 +79,7 @@ function updateTime() {
 function onMouseMove(event) {
     const sliderRect = slider.getBoundingClientRect();
     let newLeft = event.clientX - sliderRect.left - (sliderHandle.offsetWidth / 2);
-    
+
     // Begrenzen der Position des Handles
     if (newLeft < 0) newLeft = 0;
     if (newLeft > sliderRect.width - sliderHandle.offsetWidth) newLeft = sliderRect.width - sliderHandle.offsetWidth;
@@ -88,18 +98,35 @@ document.addEventListener('mouseup', () => {
 });
 
 // Initialisierung der Position und Uhrzeit
-sliderHandle.style.left = 'calc(100% - 50px)'; // Handle ganz rechts
-updateTime(); // Uhrzeit initialisieren
+function initializeSlider() {
+    const now = new Date();
+    const currentHours = now.getHours();
+    const currentMinutes = now.getMinutes();
+    
+    // Berechne die Position des Sliders für die aktuelle Uhrzeit
+    const sliderWidth = slider.offsetWidth;
+    const handleWidth = sliderHandle.offsetWidth;
+    
+    // Berechnung der aktuellen Position des Handles
+    const currentHandlePosition = (currentHours / 23) * (sliderWidth - handleWidth);
+    sliderHandle.style.left = currentHandlePosition + 'px';
+    
+    // Aktualisiere die Zeit-Anzeige
+    updateTime();
+}
 
+// Rufe die Initialisierungsfunktion auf
+initializeSlider();
 
-
-// Kalender aktuelle Datum
-window.onload = function() {
+// KALENDER AKTUELLES DATUM
+window.onload = function () {
     const today = new Date();
     const day = String(today.getDate()).padStart(2, '0');
     const month = String(today.getMonth() + 1).padStart(2, '0'); // Monate sind 0-basiert
     const year = today.getFullYear();
-    
+
     const currentDate = `${year}-${month}-${day}`;
     document.getElementById('datePicker').value = currentDate;
 };
+
+});

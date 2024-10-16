@@ -1,6 +1,26 @@
-# Cityflow - St.Gallen Auslastung
+# Cityflow - St.Gallen
 
 ## TEAM:
 - Silvana Waser
 - Nadia Giliberti
+
+## Unser Projekt:
+Unsere Webseite sammelt Daten von zwei APIs: einerseits von den Passanten an der Vadianstrasse in St. Gallen und andererseits von der Belegung der Parkhäuser in der Stadt. Besucher der Webseite können auf einen Blick erkennen, wie belebt die Stadt aktuell ist und wo sie am besten einen freien Parkplatz in den umliegenden Parkhäusern finden können. Zudem wird in der textlichen Auswertung angezeigt, ob die Auslastung in St. Gallen tendenziell höher oder niedriger ist als gewöhnlich.
+
+
+## Learnings
+- Verwendung von SQL mit PHP 
+- Einbindung von API's in Datenbanken 
+- Wissen vertieft in html, css und js
+- Zeitgleich im css an einer OnePager-Webseite arbeiten sollte vermieden werden 
+
+## Schwierigkeiten
+Eine der grössten Herausforderungen für uns war die Auswahl einer oder zweier geeigneter APIs, die nicht bereits von einem anderen Team verwendet wurden. Ohne zu wissen was uns genau erwarten wird, einen zusätzlichen journalistischen Mehrwert zu finden, empfanden wir als schwierig.
+Ausserdem war das gleichzeitige Arbeiten an einem One-Pager, ohne uns gegenseitig in die Quere zu kommen, eine weitere Herausforderung.
+
+## benutzte Ressourcen
+- [ChatGPT](https://chat.openai.com)
+- [W3Schools](https://www.w3schools.com)
+- Coachings 
+- Übungen aus dem Unterricht / Hilfsmittel auf Moodle
 
