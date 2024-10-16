@@ -28,7 +28,7 @@ html {
 
 body {
     font-family: Poppins, sans-serif;
-    background-image: url('../images/hintergrund_final.png');
+    background-image: url('../images/hintergrund_final.jpg');
     background-size: cover;
     background-position: top; /* Hintergrund zentrieren */
     background-repeat: no-repeat;
@@ -40,16 +40,88 @@ body {
 
 
 /* HEADER -> Logo Formatierung */
+
+.startseite_logo {
+display: flex;
+
+
+
+
+
+
+
+}
+
+
 .header {
     display: flex;
     justify-content: flex-end;
     width: 100%;
+
+
+
+
 
 }
 
 .logo_cityflow {
     width: 20%;
     margin: 15px;
+
+
+
+
+
+
+}
+
+/* AB HIER STARTSEITE*/
+
+.startseite {
+    display: flex;
+    flex-direction: column;
+    margin: 5px;
+    width: 85%;
+    justify-content: flex-start;
+
+
+
+
+
+}
+
+.total {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    /* Optional: zentriert die Inhalte vertikal */
+    justify-content: space-between;
+    /* Verteilt h1 und p auf den verfügbaren Platz */
+    margin-bottom: 10px;
+
+
+    
+}
+
+.total h1 {
+    flex-basis: 70%;
+    /* Nutzt 70% des verfügbaren Platzes */
+    text-align: right;
+    /* Links bündig */
+
+
+
+
+}
+
+.total p {
+    flex-basis: 30%;
+    /* Nutzt 30% des verfügbaren Platzes */
+    text-align: left;
+    /* Rechts bündig */
+
+
+    
 }
 
 /* AB HIER ALLGEMEINES*/
@@ -102,40 +174,6 @@ p {
 
 
 
-
-/* AB HIER STARTSEITE*/
-
-.startseite {
-    display: flex;
-    flex-direction: column;
-    margin: 5px;
-    width: 85%;
-    justify-content: flex-start;
-}
-
-.total {
-    display: flex;
-    flex-direction: row;
-    align-items: baseline;
-    /* Optional: zentriert die Inhalte vertikal */
-    justify-content: space-between;
-    /* Verteilt h1 und p auf den verfügbaren Platz */
-    margin-bottom: 10px;
-}
-
-.total h1 {
-    flex-basis: 70%;
-    /* Nutzt 70% des verfügbaren Platzes */
-    text-align: right;
-    /* Links bündig */
-}
-
-.total p {
-    flex-basis: 30%;
-    /* Nutzt 30% des verfügbaren Platzes */
-    text-align: left;
-    /* Rechts bündig */
-}
 
 /* AB HIER LEGENDE */
 .container_legende {
@@ -287,17 +325,26 @@ p {
 /*BILDER AM WEBSEITEN ENDE */
 .images_end {
     position: relative;
+    overflow: hidden; /* Verhindert, dass Inhalte (wie das Bild) außerhalb des Containers angezeigt werden */
+    height: 100vh; /* Begrenze die Höhe des Containers */
 }
 
 #bild_mann {
     width: 30%;
+    position: absolute; 
+    bottom: 0;
+    left: 0;
     z-index: 2;
+    max-height: 100%; /* Maximiere die Höhe, sodass das Bild innerhalb des Containers bleibt */
+    object-fit: contain; /* Hält das Bild proportional innerhalb des Containers */
 }
 
 #bild_frau {
-    width: 10%;
+    width: 20%;
+    position: absolute;
+    left: 60%;
+    bottom: 0;
     z-index: 2;
-    transform: scaleX(-1);
 }
 
 #haeuser_hintergrund {
@@ -341,6 +388,11 @@ p {
     /* Positioniert den Handle ganz rechts und stellt sicher, dass er nicht über den Slider hinausragt */
     cursor: pointer;
     z-index: 1;
+
+
+
+
+
 }
 
 .time {
@@ -349,6 +401,11 @@ p {
     text-align: center;
     font-weight: bold;
     color: #FFFC22;
+
+
+
+
+
 }
 
 
@@ -366,6 +423,12 @@ p {
     width: 100%;
     max-width: 200px;
     text-align: center;
+
+
+
+
+
+
 }
 
 
