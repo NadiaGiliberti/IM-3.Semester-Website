@@ -86,7 +86,7 @@ body {
     /* Bilder rechtsbündig ausrichten */
     justify-content: space-between;
     /* Pfeil nach unten ausrichten */
-    width: 20%;
+    width: 25%;
     margin-top: 15px;
     margin-right: 15px;
     height: 100%;
@@ -218,6 +218,16 @@ p {
 
 }
 
+.legende_titel {
+    font-weight: bold;
+    letter-spacing: 0.4vw;
+
+}
+.legende_untertitel {
+    font-weight: normal;
+    font-size: 0.9vw;
+    
+}
 
 #legende_parkhaeuser,
 #legende_passanten {
@@ -441,10 +451,10 @@ p {
     text-align: center; /* Zentriert den Text in der Zeit */
     font-weight: bold;
     color: #FFFC22;
-    margin-left: 1vw; /* Optionaler Abstand zwischen Datum und Uhrzeit */
     position: relative; /* Damit die Zeit relativ zum Container bleibt */
     flex-grow: 1; /* Damit die Zeit gleichmäßig verteilt wird */
     text-align: center; /* Zentriert den Text */
+    padding-right: 10%;
 }
 
 
