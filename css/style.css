@@ -46,11 +46,7 @@ body {
     display: flex;
     flex-direction: row;
     width: 100%;
-<<<<<<< Updated upstream
-    height: 800px;
-=======
     height: 60vw;
->>>>>>> Stashed changes
     align-items: center;
 }
 
@@ -107,18 +103,11 @@ body {
 }
 
 .pfeil {
-<<<<<<< Updated upstream
-    height: 10%;
-    width: auto;
-}
-
-=======
     width: 50%;
     /* Gleiche Breite wie das Logo */
     height: auto;
     /* Seitenverhältnis beibehalten */
 }
->>>>>>> Stashed changes
 
 
 
@@ -341,10 +330,6 @@ p {
     position: absolute;
     bottom: 0;
     left: 0;
-<<<<<<< Updated upstream
-    z-index: 2;
-=======
->>>>>>> Stashed changes
     max-height: 100%;
     /* Maximiere die Höhe, sodass das Bild innerhalb des Containers bleibt */
     object-fit: contain;
@@ -358,21 +343,6 @@ p {
     bottom: 0;
 }
 
-<<<<<<< Updated upstream
-#haeuser_hintergrund {
-    position: absolute;
-    /* Absolut positioniert im Kontext des Containers */
-    bottom: 0;
-    /* Am unteren Ende des Containers */
-    left: 0;
-    /* Am linken Rand */
-    width: 100%;
-    /* Bild über die gesamte Breite strecken */
-    z-index: -1;
-    /* Hinter anderen Inhalten */
-}
-=======
->>>>>>> Stashed changes
 
 /*SLIDER ZEIT UND KALENDER*/
 
@@ -470,21 +440,6 @@ p {
     display: flex;
     position: relative;  /* Ermöglicht absolute Positionierung des .time-Elements */
 }
-<<<<<<< Updated upstream
-
-.calendar-container {
-    margin-left: 2vw;
-}
-
-.time {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-}
-
-
-=======
->>>>>>> Stashed changes
 
 .calendar-container {
     margin-left: 2vw;
