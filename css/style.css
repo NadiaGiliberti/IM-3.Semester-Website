@@ -39,40 +39,21 @@ body {
 }
 
 
-/* HEADER -> Logo Formatierung */
+/* STARTSEITE INKL. Logo und PFEIL */
 
 .startseite {
 display: flex;
-flex-direction: column;
+flex-direction: row;
 width: 100%;
-
-
-
+height: 800px;
+align-items: center;
 }
-
-.logo_cityflow {
-    width: 20%;
-    margin: 15px;
-
-
-
-
-
-}
-
-/* AB HIER STARTSEITE*/
 
 .container_total {
     display: flex;
     flex-direction: column;
     margin: 5px;
-    width: 85%;
-    justify-content: flex-start;
-
-
-
-
-
+    width: 80%;
 }
 
 .total {
@@ -82,10 +63,7 @@ width: 100%;
     /* Optional: zentriert die Inhalte vertikal */
     justify-content: space-between;
     /* Verteilt h1 und p auf den verfügbaren Platz */
-    margin-bottom: 10px;
-
-
-    
+    margin-bottom: 10px; 
 }
 
 .total h1 {
@@ -93,10 +71,6 @@ width: 100%;
     /* Nutzt 70% des verfügbaren Platzes */
     text-align: right;
     /* Links bündig */
-
-
-
-
 }
 
 .total p {
@@ -104,10 +78,28 @@ width: 100%;
     /* Nutzt 30% des verfügbaren Platzes */
     text-align: left;
     /* Rechts bündig */
-
-
-
 }
+
+
+.container_logo {
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+}
+
+.logo_cityflow {
+    height: 20%;
+    width: auto;
+}
+
+.pfeil {
+    height: 10%;
+    width: auto;
+ }
+
+
+
+
 
 /* AB HIER ALLGEMEINES*/
 

@@ -1,6 +1,7 @@
 <?php
 // Include the database configuration file
 require 'config.php';
+header('Access-Control-Allow-Origin: *');
 
 try {
     // Create a new PDO instance using the settings in config.php
