@@ -68,12 +68,15 @@ function updateTime() {
     const handleWidth = sliderHandle.offsetWidth;
     const handlePosition = parseFloat(sliderHandle.style.left) || (sliderWidth - handleWidth);
 
-    // Berechne die Stunden basierend auf der Position des Handles
-    const hours = Math.round((handlePosition / (sliderWidth - handleWidth)) * 23); // 0-23 Stunden
-    const timeString = `${hours.toString().padStart(2, '0')}:00`;
+    // Berechne die Stunden und Minuten basierend auf der Position des Handles
+    const totalMinutes = Math.round((handlePosition / (sliderWidth - handleWidth)) * 1439); // 0-1439 Minuten (24 Stunden * 60 Minuten)
+    const hours = Math.floor(totalMinutes / 60);
+    const minutes = totalMinutes % 60;
 
+    const timeString = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
     timeDisplay.innerText = timeString;
 }
+
 
 // Funktion zum Draggen des Sliders
 function onMouseMove(event) {
@@ -107,8 +110,9 @@ function initializeSlider() {
     const sliderWidth = slider.offsetWidth;
     const handleWidth = sliderHandle.offsetWidth;
     
-    // Berechnung der aktuellen Position des Handles
-    const currentHandlePosition = (currentHours / 23) * (sliderWidth - handleWidth);
+    // Berechnung der aktuellen Position des Handles unter Berücksichtigung von Minuten
+    const totalMinutes = currentHours * 60 + currentMinutes;
+    const currentHandlePosition = (totalMinutes / 1440) * (sliderWidth - handleWidth); // 1440 Minuten in einem Tag
     sliderHandle.style.left = currentHandlePosition + 'px';
     
     // Aktualisiere die Zeit-Anzeige

@@ -62,7 +62,7 @@ body {
 }
 
 #total_passanten_h1,
-#total_freie_parkplaetze_h1{
+#total_freie_parkplaetze_h1 {
     display: flex;
     justify-content: flex-end;
     width: 75%;
@@ -398,10 +398,19 @@ p {
 
 /*SLIDER ZEIT UND KALENDER*/
 
+.container_datum_uhrzeit {
+    display: flex;
+    width: 90%;
+    flex-direction: column;
+    align-items: center; /* Zentriert den Inhalt horizontal */
+    justify-content: center; /* Zentriert den Inhalt vertikal, falls erforderlich */
+    margin: 0 auto; /* Zentriert den Container selbst */
+}
+
 .slider {
-    width: calc(100% - 100px);
+    width: 100%;
     /* Gesamtbreite minus 50px links und rechts */
-    height: 50px;
+    height: 3vw;
     /* Höhe des Sliders */
     background-color: #FFFC22;
     /* Hintergrundfarbe */
@@ -409,17 +418,14 @@ p {
     /* Runde Ecken des Sliders */
     position: relative;
     /* Setzt den Slider relativ für die Positionierung des Handles */
-    margin: 0 2vw;
-    /* 50px Abstand links und rechts */
 }
 
 .slider-handle {
-    width: 50px;
+    width: 3vw;
     /* Breite des Handles */
-    height: 50px;
+    height: 3vw;
     /* Höhe des Handles */
-    background-color: #000;
-    /* Farbe des Handles */
+    background: linear-gradient(to bottom right, #9181A0 10%, #29034F 50%) bottom right / 51% 51% no-repeat, linear-gradient(to bottom left, #9181A0 10%, #29034F 50%) bottom left / 51% 51% no-repeat, linear-gradient(to top left, #9181A0 10%, #29034F 50%) top left / 51% 51% no-repeat, linear-gradient(to top right, #9181A0 10%, #29034F 50%) top right / 51% 51% no-repeat;
     border-radius: 50%;
     /* Runde Form für den Handle */
     position: absolute;
@@ -429,18 +435,18 @@ p {
     /* Positioniert den Handle ganz rechts und stellt sicher, dass er nicht über den Slider hinausragt */
     cursor: pointer;
     z-index: 1;
+
 }
 
 .time {
     font-size: 1.5vw;
-    text-align: center;
+    text-align: center; /* Zentriert den Text in der Zeit */
     font-weight: bold;
     color: #FFFC22;
-    margin-left: 1vw;
-    /* Optionaler Abstand zwischen Datum und Uhrzeit */
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
+    margin-left: 1vw; /* Optionaler Abstand zwischen Datum und Uhrzeit */
+    position: relative; /* Damit die Zeit relativ zum Container bleibt */
+    flex-grow: 1; /* Damit die Zeit gleichmäßig verteilt wird */
+    text-align: center; /* Zentriert den Text */
 }
 
 
@@ -463,15 +469,12 @@ p {
 
 
 .calendar-container {
-    display: flex;
-    justify-content: flex-start;
-    margin-left: 2vw;
-    margin-top: 1vw;
+    margin-right: auto; /* Lässt den Kalender linksbündig */
 }
 
 .timecalendar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    position: relative;
+    display: flex; /* Flexbox für die Zeit- und Datumsauswahl */
+    align-items: center; /* Zentriert die Items in der Zeit- und Datumsauswahl */
+    width: 100%; /* Nimmt die volle Breite ein */
+    margin-top: 1vw; /* Abstand zwischen Slider und Zeitkalender */
 }
