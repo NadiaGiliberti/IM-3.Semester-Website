@@ -351,16 +351,8 @@ p {
     color: #FFFC22;
 }
 
-.calendar-container {
-    display: inline-block;
-    position: relative;
-    background-color: #FFFC22;
-    margin-top: 20px;
-    padding: 10px;
-    border-radius: 10px;
-    text-align: center;
-}
 
+/* Styling des Datumseingabefeldes */
 .calendar-input {
     padding: 10px;
     font-size: 16px;
@@ -368,4 +360,15 @@ p {
     border-radius: 5px;
     cursor: pointer;
     outline: none;
+    background-color: #FFFC22;
+    font-family: Poppins, sans-serif;
+    color: black; /* Textfarbe für besseren Kontrast */
+    width: 100%;
+    max-width: 200px;
 }
+
+
+
+
+
+

@@ -91,3 +91,5 @@ document.addEventListener('mouseup', () => {
 sliderHandle.style.left = 'calc(100% - 50px)'; // Handle ganz rechts
 updateTime(); // Uhrzeit initialisieren
 
+
+
