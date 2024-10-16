@@ -41,24 +41,10 @@ body {
 
 /* HEADER -> Logo Formatierung */
 
-.startseite_logo {
+.startseite {
 display: flex;
-
-
-
-
-
-
-
-}
-
-
-.header {
-    display: flex;
-    justify-content: flex-end;
-    width: 100%;
-
-
+flex-direction: column;
+width: 100%;
 
 
 
@@ -72,12 +58,11 @@ display: flex;
 
 
 
-
 }
 
 /* AB HIER STARTSEITE*/
 
-.startseite {
+.container_total {
     display: flex;
     flex-direction: column;
     margin: 5px;
@@ -121,7 +106,7 @@ display: flex;
     /* Rechts bündig */
 
 
-    
+
 }
 
 /* AB HIER ALLGEMEINES*/
