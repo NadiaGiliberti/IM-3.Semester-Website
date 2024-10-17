@@ -237,10 +237,19 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    // Funktion zum Draggen des Sliders
-    function onMouseMove(event) {
+     // Funktion zum Draggen des Sliders mit Maus und Touch
+    function onMove(event) {
         const sliderRect = slider.getBoundingClientRect();
-        let newLeft = event.clientX - sliderRect.left - (sliderHandle.offsetWidth / 2);
+        let clientX;
+
+        // Prüfen, ob es ein Touch-Event ist oder ein Maus-Event
+        if (event.type === 'mousemove') {
+            clientX = event.clientX;
+        } else if (event.type === 'touchmove') {
+            clientX = event.touches[0].clientX;
+        }
+
+        let newLeft = clientX - sliderRect.left - (sliderHandle.offsetWidth / 2);
 
         // Begrenzen der Position des Handles
         if (newLeft < 0) newLeft = 0;
@@ -252,11 +261,22 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Maus-Events für den Slider
     sliderHandle.addEventListener('mousedown', () => {
-        document.addEventListener('mousemove', onMouseMove);
+        document.addEventListener('mousemove', onMove);
     });
 
     document.addEventListener('mouseup', () => {
-        document.removeEventListener('mousemove', onMouseMove);
+        document.removeEventListener('mousemove', onMove);
+        fetchData(); // Aktualisiere die Daten, sobald die Maus losgelassen wird
+    });
+
+    // Touch-Events für den Slider
+    sliderHandle.addEventListener('touchstart', () => {
+        document.addEventListener('touchmove', onMove);
+    });
+
+    document.addEventListener('touchend', () => {
+        document.removeEventListener('touchmove', onMove);
+        fetchData(); // Aktualisiere die Daten, sobald der Finger losgelassen wird
     });
 
     // Initialisierung der Position und Uhrzeit
