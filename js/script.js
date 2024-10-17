@@ -3,91 +3,124 @@ document.addEventListener('DOMContentLoaded', function () {
     const apiUrl = 'https://cityflow.nadiagiliberti.ch/etl/unload_parkplaetze';
     const apiUrl2 = 'https://cityflow.nadiagiliberti.ch/etl/unload_passanten';
 
-    // Führt einen Fetch-Request an die angegebene URL durch
-    fetch(apiUrl)
-        .then(response => response.json()) // Wandelt die Antwort in JSON um
-        .then(data => {
-            console.log('Parkplaetze St.Gallen', data);
-            let totalParkplaetze = 0;
-            data.forEach(parkplatz => {
-                totalParkplaetze += parseInt(parkplatz.shortfree, 10);
+    fetchData();
 
-                // Hier den richtigen Bild-Tag auswählen
-                const parkhausId = `parkhaus_${parkplatz.id.toLowerCase()}`; // ID aus der Datenbank
-                const freieParkplaetze = parkplatz.shortfree;
-                const bildElement = document.getElementById(parkhausId);
+    function getSelectedDateTime() {
+        var date = document.getElementById('datePicker').value;
+        var time = document.getElementById('time').innerText;
 
-                // Entscheide welches Bild angezeigt werden soll
-                let statusBild;
-                if (freieParkplaetze === 0) {
-                    statusBild = 'images/stockwerke_0.png'; // Bild für besetzt
-                } else if (freieParkplaetze >= 1 && freieParkplaetze <= 74) {
-                    statusBild = 'images/stockwerke_1.png'; // Bild für 1 Etage frei
-                } else if (freieParkplaetze >= 75 && freieParkplaetze <= 149) {
-                    statusBild = 'images/stockwerke_2.png'; // Bild für 2 Etagen frei
-                } else if (freieParkplaetze >= 150 && freieParkplaetze <= 224) {
-                    statusBild = 'images/stockwerke_3.png'; // Bild für 3 Etagen frei
-                } else if (freieParkplaetze >= 225 && freieParkplaetze <= 299) {
-                    statusBild = 'images/stockwerke_4.png'; // Bild für 4 Etagen frei
-                } else if (freieParkplaetze >= 300 && freieParkplaetze <= 371) {
-                    statusBild = 'images/stockwerke_5.png'; // Bild für 5 Etagen frei
-                }
+        if (date === '' || time === '') {
 
-                // Setze das Bild
-                if (bildElement) {
-                    bildElement.src = statusBild;
-                }
+            //take current date and time
+            let now = new Date();
+            time = now.getHours() + ":" + now.getMinutes();
+            date = now.toISOString().split('T')[0]; // Format date as YYYY-MM-DD
+            
+
+        }
+
+        console.log('Selected Date:', date);
+
+        // Kombiniere Datum und Uhrzeit in einem passenden Format für SQL
+        const selectedDateTime = `${date} ${time}:00`; // YYYY-MM-DD HH:MM:SS
+        return selectedDateTime;
+    }
+
+    function fetchData() {
+
+        const dateTime = getSelectedDateTime(); // Hole die gewählte Zeit
+
+        console.log(dateTime);
+
+        const apiUrlParkplaetze = `https://cityflow.nadiagiliberti.ch/etl/unload_parkplaetze?datetime=${encodeURIComponent(dateTime)}`;
+        const apiUrlPassanten = `https://cityflow.nadiagiliberti.ch/etl/unload_passanten?datetime=${encodeURIComponent(dateTime)}`;
+
+        console.log(apiUrlParkplaetze)
+        console.log(apiUrlPassanten)
+
+        // Fetch für Parkplätze
+        fetch(apiUrlParkplaetze)
+            .then(response => response.json())
+            .then(data => {
+                console.log('Parkplaetze zur gewählten Zeit:', data);
+                updateParkplatzBilder(data);
+            })
+            .catch(error => {
+                console.error('Fehler beim Abrufen der Parkplatzdaten:', error);
             });
 
-            // Finde die beiden nötigen Element und setze die berechnete Summe
-            document.querySelector('h1.total_freie_parkplaetze').textContent = totalParkplaetze;
-            document.querySelector('span.total_freie_parkplaetze').textContent = totalParkplaetze;
+        // Fetch für Passanten
+        fetch(apiUrlPassanten)
+            .then(response => response.json())
+            .then(data => {
+                console.log('Passanten zur gewählten Zeit:', data);
+                updatePassantenBild(data);
+            })
+            .catch(error => {
+                console.error('Fehler beim Abrufen der Passantendaten:', error);
+            });
+    }
 
-        })
-        .catch(error => {
-            console.error('Fehler beim Abrufen Parkplätze:', error);
-        });
+    // Update-Funktion für Parkhäuser-Bilder
+    function updateParkplatzBilder(data) {
+        let totalParkplaetze = 0;
+        data.forEach(parkplatz => {
+            totalParkplaetze += parseInt(parkplatz.shortfree, 10);
 
-    // Fetch für die zweite API
-    fetch(apiUrl2)
-        .then(response => response.json())
-        .then(data2 => {
-            console.log('Passanten St.Gallen', data2);
-            const totalPassanten = data2[0].summe;
+            const parkhausId = `parkhaus_${parkplatz.id.toLowerCase()}`;
+            const freieParkplaetze = parkplatz.shortfree;
+            const bildElement = document.getElementById(parkhausId);
 
-
-            // Finde die beiden nötigen Element und setze die berechnete Summe
-            document.querySelector('h1.total_passanten').textContent = totalPassanten;
-            document.querySelector('span.total_passanten').textContent = totalPassanten;
-
-            // Bildwechsel je nach Passantenzahl
-            const bildElement = document.querySelector('.bilder_passanten'); // Dein Bild-Element
-            let passantenBild;
-
-            if (totalPassanten >= 0 && totalPassanten <= 64) {
-                passantenBild = 'images/passanten_1.png';
-            } else if (totalPassanten >= 65 && totalPassanten <= 129) {
-                passantenBild = 'images/passanten_2.png';
-            } else if (totalPassanten >= 130 && totalPassanten <= 194) {
-                passantenBild = 'images/passanten_3.png';
-            } else if (totalPassanten >= 195 && totalPassanten <= 259) {
-                passantenBild = 'images/passanten_4.png';
-            } else if (totalPassanten >= 260) {
-                passantenBild = 'images/passanten_5.png';
+            let statusBild;
+            if (freieParkplaetze === 0) {
+                statusBild = 'images/stockwerke_0.png';
+            } else if (freieParkplaetze >= 1 && freieParkplaetze <= 74) {
+                statusBild = 'images/stockwerke_1.png';
+            } else if (freieParkplaetze >= 75 && freieParkplaetze <= 149) {
+                statusBild = 'images/stockwerke_2.png';
+            } else if (freieParkplaetze >= 150 && freieParkplaetze <= 224) {
+                statusBild = 'images/stockwerke_3.png';
+            } else if (freieParkplaetze >= 225 && freieParkplaetze <= 299) {
+                statusBild = 'images/stockwerke_4.png';
+            } else if (freieParkplaetze >= 300 && freieParkplaetze <= 371) {
+                statusBild = 'images/stockwerke_5.png';
             }
 
-            // Setze das entsprechende Bild
             if (bildElement) {
-                bildElement.src = passantenBild;
+                bildElement.src = statusBild;
             }
-
-        })
-
-
-
-        .catch(error => {
-            console.error('Fehler beim Abrufen der Passanten-Daten:', error);
         });
+
+        document.querySelector('h1.total_freie_parkplaetze').textContent = totalParkplaetze;
+        document.querySelector('span.total_freie_parkplaetze').textContent = totalParkplaetze;
+    }
+
+    // Update-Funktion für Passanten-Bild
+    function updatePassantenBild(data) {
+        const totalPassanten = data[0].summe;
+
+        const bildElement = document.querySelector('.bilder_passanten');
+        let passantenBild;
+
+        if (totalPassanten >= 0 && totalPassanten <= 64) {
+            passantenBild = 'images/passanten_1.png';
+        } else if (totalPassanten >= 65 && totalPassanten <= 129) {
+            passantenBild = 'images/passanten_2.png';
+        } else if (totalPassanten >= 130 && totalPassanten <= 194) {
+            passantenBild = 'images/passanten_3.png';
+        } else if (totalPassanten >= 195 && totalPassanten <= 259) {
+            passantenBild = 'images/passanten_4.png';
+        } else if (totalPassanten >= 260) {
+            passantenBild = 'images/passanten_5.png';
+        }
+
+        if (bildElement) {
+            bildElement.src = passantenBild;
+        }
+
+        document.querySelector('h1.total_passanten').textContent = totalPassanten;
+        document.querySelector('span.total_passanten').textContent = totalPassanten;
+    }
 
 
 
@@ -110,33 +143,35 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // Fetch für Parkplätze und Passanten zusammenfassen
-    fetch(apiUrl)
-        .then(response => response.json())
-        .then(parkplatzData => {
-            let totalParkplaetze = 0;
-            parkplatzData.forEach(parkplatz => {
-                totalParkplaetze += parseInt(parkplatz.shortfree, 10);
-            });
+    // fetch(apiUrl)
+    //     .then(response => response.json())
+    //     .then(parkplatzData => {
+    //         let totalParkplaetze = 0;
+    //         parkplatzData.forEach(parkplatz => {
+    //             totalParkplaetze += parseInt(parkplatz.shortfree, 10);
+    //         });
 
-            fetch(apiUrl2)
-                .then(response => response.json())
-                .then(passantenData => {
-                    const totalPassanten = passantenData[0].summe;
+    //         fetch(apiUrl2)
+    //             .then(response => response.json())
+    //             .then(passantenData => {
+    //                 const totalPassanten = passantenData[0].summe;
 
-                    // Bestimme die Auswertung auf Basis der aktuellen Daten
-                    const parkplatzAuswertung = bestimmeParkplatzAuswertung(totalPassanten, totalParkplaetze);
+    //                 // Bestimme die Auswertung auf Basis der aktuellen Daten
+    //                 const parkplatzAuswertung = bestimmeParkplatzAuswertung(totalPassanten, totalParkplaetze);
 
-                    // Finde das Span-Element und setze den Auswertungstext
-                    const vergleichSpan = document.querySelector('span.vergleich');
-                    vergleichSpan.textContent = parkplatzAuswertung;
-                })
-                .catch(error => {
-                    console.error('Fehler beim Abrufen der Passanten-Daten:', error);
-                });
-        })
-        .catch(error => {
-            console.error('Fehler beim Abrufen Parkplätze:', error);
-        });
+    //                 // Finde das Span-Element und setze den Auswertungstext
+    //                 const vergleichSpan = document.querySelector('span.vergleich');
+    //                 vergleichSpan.textContent = parkplatzAuswertung;
+    //             })
+    //             .catch(error => {
+    //                 console.error('Fehler beim Abrufen der Passanten-Daten:', error);
+    //             });
+    //     })
+    //     .catch(error => {
+    //         console.error('Fehler beim Abrufen Parkplätze:', error);
+    //     });
+
+
 
     //SCROLLFUNKTION ZUR KARTE BEI KLICK AUF PFEIL
 
@@ -149,6 +184,8 @@ document.addEventListener('DOMContentLoaded', function () {
         window.scrollTo({ top: y, behavior: 'smooth' }); // Sanftes Scrollen
     });
 
+    document.getElementById('slider-handle').addEventListener('mouseup', fetchData);
+    document.getElementById('datePicker').addEventListener('change', fetchData);
 
     const slider = document.getElementById('slider');
     const sliderHandle = document.getElementById('slider-handle');
@@ -178,10 +215,10 @@ document.addEventListener('DOMContentLoaded', function () {
         const timeString = `${adjustedHours.toString().padStart(2, '0')}:${adjustedMinutesFormatted.toString().padStart(2, '0')}`;
         timeDisplay.innerText = timeString;
 
-        
+
 
         // Überprüfe, ob die Uhrzeit 23:59 oder weniger ist
-        if (adjustedHours > currentHours ) {
+        if (adjustedHours > currentHours) {
 
             console.log("we're in the past day!");
 
@@ -196,12 +233,12 @@ document.addEventListener('DOMContentLoaded', function () {
             const newDateString = `${year}-${month}-${day}`;
             document.getElementById('datePicker').value = newDateString; // Aktualisiere das Datum im Kalender
 
-            
+
 
         } else {
-        //Setze Datum auf den aktuellen Tag
-        const currentDate = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
-        document.getElementById('datePicker').value = currentDate; // Setze zurück auf das aktuelle Datum
+            //Setze Datum auf den aktuellen Tag
+            const currentDate = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
+            document.getElementById('datePicker').value = currentDate; // Setze zurück auf das aktuelle Datum
         }
     }
 

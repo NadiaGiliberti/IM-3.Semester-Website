@@ -7,13 +7,12 @@ try {
     // Create a new PDO instance using the settings in config.php
     $pdo = new PDO($dsn, $username, $password, $options);
 
-    // SQL query to fetch the required data
-    $sql = "SELECT summe 
-            FROM passanten 
-            WHERE measured_at_new = (SELECT MAX(measured_at_new) FROM passanten) LIMIT 1";
+    $dateTime = $_GET['datetime']; // Datum und Uhrzeit aus der Anfrage
 
-    // Prepare the SQL statement
-    $stmt = $pdo->prepare($sql);
+$sql = "SELECT summe FROM passanten WHERE measured_at_new <= :datetime ORDER BY measured_at_new DESC LIMIT 1";
+        
+$stmt = $pdo->prepare($sql);
+$stmt->bindParam(':datetime', $dateTime);
 
     // Execute the statement
     $stmt->execute();
