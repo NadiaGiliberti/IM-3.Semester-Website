@@ -21,19 +21,17 @@ document.addEventListener('DOMContentLoaded', function () {
                 let statusBild;
                 if (freieParkplaetze === 0) {
                     statusBild = 'images/stockwerke_0.png'; // Bild für besetzt
-                } else if (freieParkplaetze >= 1 && freieParkplaetze <= 99) {
+                } else if (freieParkplaetze >= 1 && freieParkplaetze <= 74) {
                     statusBild = 'images/stockwerke_1.png'; // Bild für 1 Etage frei
-                } else if (freieParkplaetze >= 100 && freieParkplaetze <= 199) {
+                } else if (freieParkplaetze >= 75 && freieParkplaetze <= 149) {
                     statusBild = 'images/stockwerke_2.png'; // Bild für 2 Etagen frei
-                } else if (freieParkplaetze >= 200 && freieParkplaetze <= 299) {
+                } else if (freieParkplaetze >= 150 && freieParkplaetze <= 224) {
                     statusBild = 'images/stockwerke_3.png'; // Bild für 3 Etagen frei
-                } else if (freieParkplaetze >= 300 && freieParkplaetze <= 399) {
+                } else if (freieParkplaetze >= 225 && freieParkplaetze <= 299) {
                     statusBild = 'images/stockwerke_4.png'; // Bild für 4 Etagen frei
-                } else if (freieParkplaetze >= 400 && freieParkplaetze <= 499) {
+                } else if (freieParkplaetze >= 300 && freieParkplaetze <= 371) {
                     statusBild = 'images/stockwerke_5.png'; // Bild für 5 Etagen frei
-                } else {
-                    statusBild = 'images/stockwerke_5.png'; // Bild für über 499 Parkplätze
-                }
+                } 
 
                 // Setze das Bild
                 if (bildElement) {
@@ -90,6 +88,55 @@ document.addEventListener('DOMContentLoaded', function () {
         .catch(error => {
             console.error('Fehler beim Abrufen der Passanten-Daten:', error);
         });
+
+
+
+
+        // Beispielwerte für durchschnittliche freie Parkplätze pro Passant
+const durchschnittParkplaetzeProPassant = 20; // z.B. 20 Parkplätze pro Passant im Durchschnitt
+const toleranz = 0.1; // 10% Toleranz für die Einstufung „gleich viele“
+
+// Funktion zur Bestimmung, ob es mehr, weniger oder gleich viele Parkplätze gibt
+function bestimmeParkplatzAuswertung(totalPassanten, totalParkplaetze) {
+    const erwarteteParkplaetze = totalPassanten * durchschnittParkplaetzeProPassant;
+
+    if (totalParkplaetze < erwarteteParkplaetze * (1 - toleranz)) {
+        return "weniger";
+    } else if (totalParkplaetze > erwarteteParkplaetze * (1 + toleranz)) {
+        return "viele";
+    } else {
+        return "gleich viele";
+    }
+}
+
+// Fetch für Parkplätze und Passanten zusammenfassen
+fetch(apiUrl)
+    .then(response => response.json())
+    .then(parkplatzData => {
+        let totalParkplaetze = 0;
+        parkplatzData.forEach(parkplatz => {
+            totalParkplaetze += parseInt(parkplatz.shortfree, 10);
+        });
+
+        fetch(apiUrl2)
+            .then(response => response.json())
+            .then(passantenData => {
+                const totalPassanten = passantenData[0].summe;
+
+                // Bestimme die Auswertung auf Basis der aktuellen Daten
+                const parkplatzAuswertung = bestimmeParkplatzAuswertung(totalPassanten, totalParkplaetze);
+
+                // Finde das Span-Element und setze den Auswertungstext
+                const vergleichSpan = document.querySelector('span.vergleich');
+                vergleichSpan.textContent = parkplatzAuswertung;
+            })
+            .catch(error => {
+                console.error('Fehler beim Abrufen der Passanten-Daten:', error);
+            });
+    })
+    .catch(error => {
+        console.error('Fehler beim Abrufen Parkplätze:', error);
+    });
 
     //SCROLLFUNKTION ZUR KARTE BEI KLICK AUF PFEIL
 
