@@ -608,6 +608,7 @@ p {
         height: 80vh;
         background-size: cover;
         padding-right: 0;
+        position: relative;
 
     }
 
@@ -659,7 +660,7 @@ p {
         /* Höhe automatisch */
         position: relative;
         bottom: 0;
-        margin-top: 10%;
+        margin-top: 20%;
     }
 
 
@@ -685,7 +686,7 @@ p {
     }
 
 .auswertung_text {
-height: 60vh;
+height: 65vh;
 
 }
 
