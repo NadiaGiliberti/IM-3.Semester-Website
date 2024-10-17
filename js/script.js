@@ -304,14 +304,6 @@ document.addEventListener('DOMContentLoaded', function () {
     window.addEventListener('load', initializeSlider);
     window.addEventListener('resize', initializeSlider);
 
-
-
-
-
-
-
-
-
     // KALENDER AKTUELLES DATUM
     window.onload = function () {
         const today = new Date();
@@ -323,4 +315,25 @@ document.addEventListener('DOMContentLoaded', function () {
         document.getElementById('datePicker').value = currentDate;
     };
 
+
+    // FUNKTION ZUM ERSETZEN VON <br> DURCH LEERZEICHEN IM HTML
+
+    function replaceBrWithSpace() {
+        if (window.innerWidth <= 576) {
+            // Alle <br>-Tags in der Text-Erklärung durch Leerzeichen ersetzen
+            document.querySelectorAll('.text_erklaehrung br').forEach(function(br) {
+                const space = document.createTextNode(" ");
+                br.replaceWith(space);  // Ersetzt das <br> durch ein Leerzeichen
+            });
+        }
+    }
+    
+    // Event Listener, um die Funktion beim Laden der Seite auszuführen
+    window.addEventListener('load', replaceBrWithSpace);
+    
+    // Event Listener, um die Funktion bei einer Fenstergrößenänderung auszuführen
+    window.addEventListener('resize', replaceBrWithSpace);
+
+
 });
+

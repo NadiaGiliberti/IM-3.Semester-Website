@@ -60,20 +60,21 @@ body {
     display: flex;
     flex-direction: row;
     align-items: baseline;
+
 }
 
 #total_passanten_h1,
 #total_freie_parkplaetze_h1 {
     display: flex;
     justify-content: flex-end;
-    width: 75%;
+    width: 80%;
     /* Nutzt 70% des verfügbaren Platzes */
     text-align: right;
     /* Links bündig */
 }
 
 .total p {
-    width: 25%;
+    width: 20%;
     /* Nutzt 30% des verfügbaren Platzes */
     text-align: left;
     /* Rechts bündig */
@@ -151,7 +152,7 @@ main {
 
 h1 {
     color: #FFFC22;
-    font-size: 22vw;
+    font-size: 20vw;
     letter-spacing: 1.5vw;
     line-height: 1;
 
@@ -228,7 +229,7 @@ p {
 .legende_untertitel {
     font-weight: normal;
     font-size: 0.9vw;
-    
+
 }
 
 #legende_parkhaeuser,
@@ -450,12 +451,16 @@ p {
 
 .time {
     font-size: 1.5vw;
-    text-align: center; /* Zentriert den Text in der Zeit */
+    text-align: center;
+    /* Zentriert den Text in der Zeit */
     font-weight: bold;
     color: #FFFC22;
-    position: relative; /* Damit die Zeit relativ zum Container bleibt */
-    flex-grow: 1; /* Damit die Zeit gleichmäßig verteilt wird */
-    text-align: center; /* Zentriert den Text */
+    position: relative;
+    /* Damit die Zeit relativ zum Container bleibt */
+    flex-grow: 1;
+    /* Damit die Zeit gleichmäßig verteilt wird */
+    text-align: center;
+    /* Zentriert den Text */
     padding-right: 10%;
 }
 
@@ -479,15 +484,26 @@ p {
 
 
 .calendar-container {
-    margin-right: auto; /* Lässt den Kalender linksbündig */
+    margin-right: auto;
+    /* Lässt den Kalender linksbündig */
 }
 
 .timecalendar {
-    display: flex; /* Flexbox für die Zeit- und Datumsauswahl */
-    align-items: center; /* Zentriert die Items in der Zeit- und Datumsauswahl */
-    width: 100%; /* Nimmt die volle Breite ein */
-    margin-top: 1vw; /* Abstand zwischen Slider und Zeitkalender */
+    display: flex;
+    /* Flexbox für die Zeit- und Datumsauswahl */
+    align-items: center;
+    /* Zentriert die Items in der Zeit- und Datumsauswahl */
+    width: 100%;
+    /* Nimmt die volle Breite ein */
+    margin-top: 1vw;
+    /* Abstand zwischen Slider und Zeitkalender */
 }
+
+.logo_short {
+    display: none;
+    /* Versteckt das Datumseingabefeld */
+}
+
 
 
 
@@ -495,11 +511,129 @@ p {
 @media screen and (max-width: 576px) {
 
 
+    /* Wechsel von Logos*/
+    .logo_cityflow {
+        display: none;
+        /* Das Desktop-Logo verstecken */
+    }
+
+    .logo_short {
+        display: block;
+        width: 7%;
+        /* Breite des Logos anpassen, falls nötig */
+        margin: 10% auto 4%;
+        /* Zentriert das Bild horizontal */
+    }
+
+    /* ALLGEMEINES */
+
+    h1 {
+        font-size: 35vw;
+        /* Grösse des Titels anpassen */
+        letter-spacing: 0.5vw;
+        /* Abstand zwischen den Buchstaben anpassen */
+    }
+
+    h2 {
+        display: none;
+    }
+
+    h3 {
+        font-size: 7vw;
+    }
+
+    p {
+        font-size: 6vw;
+    }
+
+    br {
+        display: none;
+    }
+
+    /* STARTSEITE */
+
+    .startseite {
+        flex-direction: column;
+        height: 75vh;
+    }
+
+    .container_total {
+        height: 90vh;
+
+    }
+
+    .total {
+        flex-direction: column;
+        margin-bottom: 10%;
+    }
+
+    #total_passanten_h1,
+    #total_freie_parkplaetze_h1 {
+        justify-content: center;
+        width: 100%;
+    }
+
+    .total p {
+        width: 100%;
+        /* Nutzt 30% des verfügbaren Platzes */
+        text-align: center;
+        /* Rechts bündig */
+    }
+
+    .container_logo {
+        margin-top: 5px;
+        margin-right: 5px;
+    }
+
+    .pfeil {
+        width: 100%;
+    }
 
 
 
+    /* AB HIER INFO ZUR KARTE*/
+
+    .container_legende {
+        height: 80vh;
+        background-size: cover;
+        padding-right: 0;
+
+    }
+
+    #text_legende,
+    .bilder_legenden {
+        display: none;
+        width: 0%;
+    }
 
 
+    .text_erklaehrung {
+        width: 94%;
+        text-align: center;
+        margin-top: 2%;
+        margin-bottom: 2%;
+        justify-content: center;
+        align-content: center;
+        
+    }
 
-    
+
+    /* AB HIER KARTE UND TIME/DATE */ 
+
+    .karte {
+        margin-top: 5vh;
+        margin-bottom: 2vh;
+    }
+
+.calendar-container {
+
+
+}
+
+
+    .timecalendar {
+        margin-top: 0.2vw;
+        /* Abstand zwischen Slider und Zeitkalender */
+    }
+
 }
