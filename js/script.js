@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function () {
             let now = new Date();
             time = now.getHours() + ":" + now.getMinutes();
             date = now.toISOString().split('T')[0]; // Format date as YYYY-MM-DD
-            
+
 
         }
 
@@ -38,12 +38,22 @@ document.addEventListener('DOMContentLoaded', function () {
         console.log(apiUrlParkplaetze)
         console.log(apiUrlPassanten)
 
+        let totalParkplaetze = 0;
+        let totalPassanten = 0;
+
         // Fetch für Parkplätze
         fetch(apiUrlParkplaetze)
             .then(response => response.json())
             .then(data => {
                 console.log('Parkplaetze zur gewählten Zeit:', data);
+
+                totalParkplaetze = data.reduce((sum, parkplatz) => sum + parseInt(parkplatz.shortfree, 10), 0);
                 updateParkplatzBilder(data);
+
+                // Check if passanten data has been fetched already
+                if (totalPassanten > 0) {
+                    updateAuswertung(totalPassanten, totalParkplaetze); // Hier wird die Auswertung hinzugefügt
+                }
             })
             .catch(error => {
                 console.error('Fehler beim Abrufen der Parkplatzdaten:', error);
@@ -54,7 +64,14 @@ document.addEventListener('DOMContentLoaded', function () {
             .then(response => response.json())
             .then(data => {
                 console.log('Passanten zur gewählten Zeit:', data);
+
+                totalPassanten = data[0].summe;
                 updatePassantenBild(data);
+
+                // Check if parkplaetze data has been fetched already
+                if (totalParkplaetze > 0) {
+                    updateAuswertung(totalPassanten, totalParkplaetze); // Hier wird die Auswertung hinzugefügt
+                }
             })
             .catch(error => {
                 console.error('Fehler beim Abrufen der Passantendaten:', error);
@@ -125,6 +142,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
+    // Funktion zur Aktualisierung des Vergleichs
+    function updateAuswertung(totalPassanten, totalParkplaetze) {
+        const vergleichText = bestimmeParkplatzAuswertung(totalPassanten, totalParkplaetze);
+        document.querySelector('span.vergleich').textContent = vergleichText;
+    }
+
     // Beispielwerte für durchschnittliche freie Parkplätze pro Passant
     const durchschnittParkplaetzeProPassant = 20; // z.B. 20 Parkplätze pro Passant im Durchschnitt
     const toleranz = 0.1; // 10% Toleranz für die Einstufung „gleich viele“
@@ -142,36 +165,6 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    // Fetch für Parkplätze und Passanten zusammenfassen
-    // fetch(apiUrl)
-    //     .then(response => response.json())
-    //     .then(parkplatzData => {
-    //         let totalParkplaetze = 0;
-    //         parkplatzData.forEach(parkplatz => {
-    //             totalParkplaetze += parseInt(parkplatz.shortfree, 10);
-    //         });
-
-    //         fetch(apiUrl2)
-    //             .then(response => response.json())
-    //             .then(passantenData => {
-    //                 const totalPassanten = passantenData[0].summe;
-
-    //                 // Bestimme die Auswertung auf Basis der aktuellen Daten
-    //                 const parkplatzAuswertung = bestimmeParkplatzAuswertung(totalPassanten, totalParkplaetze);
-
-    //                 // Finde das Span-Element und setze den Auswertungstext
-    //                 const vergleichSpan = document.querySelector('span.vergleich');
-    //                 vergleichSpan.textContent = parkplatzAuswertung;
-    //             })
-    //             .catch(error => {
-    //                 console.error('Fehler beim Abrufen der Passanten-Daten:', error);
-    //             });
-    //     })
-    //     .catch(error => {
-    //         console.error('Fehler beim Abrufen Parkplätze:', error);
-    //     });
-
-
 
     //SCROLLFUNKTION ZUR KARTE BEI KLICK AUF PFEIL
 
@@ -184,6 +177,8 @@ document.addEventListener('DOMContentLoaded', function () {
         window.scrollTo({ top: y, behavior: 'smooth' }); // Sanftes Scrollen
     });
 
+
+    //FUNKTIONEN FÜR DEN SLIDER
     document.getElementById('slider-handle').addEventListener('mouseup', fetchData);
     document.getElementById('datePicker').addEventListener('change', fetchData);
 
