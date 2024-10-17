@@ -15,8 +15,8 @@ Unsere Webseite sammelt Daten von zwei APIs: einerseits von den Passanten an der
 - Zeitgleich im css an einer OnePager-Webseite arbeiten sollte vermieden werden 
 
 ## Schwierigkeiten
-Eine der grössten Herausforderungen für uns war die Auswahl einer oder zweier geeigneter APIs, die nicht bereits von einem anderen Team verwendet wurden. Ohne zu wissen was uns genau erwarten wird, einen zusätzlichen journalistischen Mehrwert zu finden, empfanden wir als schwierig.
-Ausserdem war das gleichzeitige Arbeiten an einem One-Pager, ohne uns gegenseitig in die Quere zu kommen, eine weitere Herausforderung.
+Eine der grössten Herausforderungen für uns war die Auswahl einer oder zweier geeigneter APIs, die nicht bereits von einem anderen Team verwendet wurden. Auch stellte uns die Anforderung, einen journalistischen Mehrwert zu finden, vor einige Schwierigkeiten. 
+Das gleichzeitige Arbeiten an einem One-Pager, ohne uns gegenseitig in die Quere zu kommen, beansprucht viel Zeit für Absprachen. Aber auch dann, kann man Fehlermeldungen nur schwer vermeiden.
 
 ## benutzte Ressourcen
 - [ChatGPT](https://chat.openai.com)
