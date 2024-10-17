@@ -304,6 +304,7 @@ document.addEventListener('DOMContentLoaded', function () {
     window.addEventListener('load', initializeSlider);
     window.addEventListener('resize', initializeSlider);
 
+
     // KALENDER AKTUELLES DATUM
     window.onload = function () {
         const today = new Date();

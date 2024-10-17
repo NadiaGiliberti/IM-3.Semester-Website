@@ -226,6 +226,7 @@ p {
     letter-spacing: 0.4vw;
 
 }
+
 .legende_untertitel {
     font-weight: normal;
     font-size: 0.9vw;
@@ -413,9 +414,12 @@ p {
     display: flex;
     width: 90%;
     flex-direction: column;
-    align-items: center; /* Zentriert den Inhalt horizontal */
-    justify-content: center; /* Zentriert den Inhalt vertikal, falls erforderlich */
-    margin: 0 auto; /* Zentriert den Container selbst */
+    align-items: center;
+    /* Zentriert den Inhalt horizontal */
+    justify-content: center;
+    /* Zentriert den Inhalt vertikal, falls erforderlich */
+    margin: 0 auto;
+    /* Zentriert den Container selbst */
 }
 
 .slider {
@@ -510,6 +514,10 @@ p {
 /*** Handy  ***/
 @media screen and (max-width: 576px) {
 
+    body {
+        
+        background-size: 220%;
+    }
 
     /* Wechsel von Logos*/
     .logo_cityflow {
@@ -538,6 +546,9 @@ p {
         display: none;
     }
 
+    .vergleich,
+    #total_parkplaetze_schluss,
+    #total_passanten_schluss,
     h3 {
         font-size: 7vw;
     }
@@ -614,26 +625,68 @@ p {
         margin-bottom: 2%;
         justify-content: center;
         align-content: center;
-        
+
     }
 
 
-    /* AB HIER KARTE UND TIME/DATE */ 
+    /* AB HIER KARTE UND TIME/DATE */
 
     .karte {
         margin-top: 5vh;
         margin-bottom: 2vh;
     }
 
-.calendar-container {
-
-
-}
-
-
     .timecalendar {
         margin-top: 0.2vw;
         /* Abstand zwischen Slider und Zeitkalender */
     }
+
+    /* AB HIER JOURNALISTISCHER BEITRAG + BILDER */
+
+
+    /* Container für den Abschluss */
+    .container_schluss {
+        flex-direction: column-reverse;
+        width: 100%;
+        margin-top: 15%;
+    }
+
+    /* Container für den Mann */
+    .container_mann {
+        width: 70%;
+        /* Bilder nebeneinander, halbe Breite für den Mann */
+        height: auto;
+        /* Höhe automatisch */
+        position: relative;
+        bottom: 0;
+        margin-top: 10%;
+    }
+
+
+    /* Textcontainer */
+    .auswertung_frau {
+        width: 90%;
+        /* Nimmt die volle Breite für den Text ein */
+        text-align: center;
+        /* Text zentrieren */
+        align-self: center;
+    }
+
+
+    /* Setze die beiden Bild-Container nebeneinander am unteren Ende */
+    .container_frau {
+        width: 95%;
+        /* Teile den Platz auf */
+        position: absolute;
+        /* Damit die Bilder nebeneinander bleiben */
+        justify-content: flex-end;
+        bottom: 0;
+        /* An den unteren Rand setzen */
+    }
+
+.auswertung_text {
+height: 60vh;
+
+}
 
 }
