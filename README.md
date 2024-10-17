@@ -23,3 +23,5 @@ Das gleichzeitige Arbeiten an einem One-Pager, ohne uns gegenseitig in die Quere
 - Coachings 
 - Übungen aus dem Unterricht / Hilfsmittel auf Moodle
 
+## BEWUSSTE BUGS
+Wenn der User auf der interaktiven Karte das Datum zuerst wählt und dann erst die damalige Uhrzeit einstellen möchte, wird der Kalender wieder auf das Tagesdatum zurückgesetzt. Dieser Fehler ist uns bekannt. Nach mehreren erfolglosen Behebungsversuchen, haben wir uns dafür entschieden, es so zu belassen, da die Daten mit umgekehrter Reihenfolge (zuerst Zeit und dann Datum wählen) ausgelesen werden können.
