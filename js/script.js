@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     statusBild = 'images/stockwerke_4.png'; // Bild für 4 Etagen frei
                 } else if (freieParkplaetze >= 300 && freieParkplaetze <= 371) {
                     statusBild = 'images/stockwerke_5.png'; // Bild für 5 Etagen frei
-                } 
+                }
 
                 // Setze das Bild
                 if (bildElement) {
@@ -92,51 +92,51 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
-        // Beispielwerte für durchschnittliche freie Parkplätze pro Passant
-const durchschnittParkplaetzeProPassant = 20; // z.B. 20 Parkplätze pro Passant im Durchschnitt
-const toleranz = 0.1; // 10% Toleranz für die Einstufung „gleich viele“
+    // Beispielwerte für durchschnittliche freie Parkplätze pro Passant
+    const durchschnittParkplaetzeProPassant = 20; // z.B. 20 Parkplätze pro Passant im Durchschnitt
+    const toleranz = 0.1; // 10% Toleranz für die Einstufung „gleich viele“
 
-// Funktion zur Bestimmung, ob es mehr, weniger oder gleich viele Parkplätze gibt
-function bestimmeParkplatzAuswertung(totalPassanten, totalParkplaetze) {
-    const erwarteteParkplaetze = totalPassanten * durchschnittParkplaetzeProPassant;
+    // Funktion zur Bestimmung, ob es mehr, weniger oder gleich viele Parkplätze gibt
+    function bestimmeParkplatzAuswertung(totalPassanten, totalParkplaetze) {
+        const erwarteteParkplaetze = totalPassanten * durchschnittParkplaetzeProPassant;
 
-    if (totalParkplaetze < erwarteteParkplaetze * (1 - toleranz)) {
-        return "weniger";
-    } else if (totalParkplaetze > erwarteteParkplaetze * (1 + toleranz)) {
-        return "viele";
-    } else {
-        return "gleich viele";
+        if (totalParkplaetze < erwarteteParkplaetze * (1 - toleranz)) {
+            return "weniger";
+        } else if (totalParkplaetze > erwarteteParkplaetze * (1 + toleranz)) {
+            return "viele";
+        } else {
+            return "gleich viele";
+        }
     }
-}
 
-// Fetch für Parkplätze und Passanten zusammenfassen
-fetch(apiUrl)
-    .then(response => response.json())
-    .then(parkplatzData => {
-        let totalParkplaetze = 0;
-        parkplatzData.forEach(parkplatz => {
-            totalParkplaetze += parseInt(parkplatz.shortfree, 10);
-        });
-
-        fetch(apiUrl2)
-            .then(response => response.json())
-            .then(passantenData => {
-                const totalPassanten = passantenData[0].summe;
-
-                // Bestimme die Auswertung auf Basis der aktuellen Daten
-                const parkplatzAuswertung = bestimmeParkplatzAuswertung(totalPassanten, totalParkplaetze);
-
-                // Finde das Span-Element und setze den Auswertungstext
-                const vergleichSpan = document.querySelector('span.vergleich');
-                vergleichSpan.textContent = parkplatzAuswertung;
-            })
-            .catch(error => {
-                console.error('Fehler beim Abrufen der Passanten-Daten:', error);
+    // Fetch für Parkplätze und Passanten zusammenfassen
+    fetch(apiUrl)
+        .then(response => response.json())
+        .then(parkplatzData => {
+            let totalParkplaetze = 0;
+            parkplatzData.forEach(parkplatz => {
+                totalParkplaetze += parseInt(parkplatz.shortfree, 10);
             });
-    })
-    .catch(error => {
-        console.error('Fehler beim Abrufen Parkplätze:', error);
-    });
+
+            fetch(apiUrl2)
+                .then(response => response.json())
+                .then(passantenData => {
+                    const totalPassanten = passantenData[0].summe;
+
+                    // Bestimme die Auswertung auf Basis der aktuellen Daten
+                    const parkplatzAuswertung = bestimmeParkplatzAuswertung(totalPassanten, totalParkplaetze);
+
+                    // Finde das Span-Element und setze den Auswertungstext
+                    const vergleichSpan = document.querySelector('span.vergleich');
+                    vergleichSpan.textContent = parkplatzAuswertung;
+                })
+                .catch(error => {
+                    console.error('Fehler beim Abrufen der Passanten-Daten:', error);
+                });
+        })
+        .catch(error => {
+            console.error('Fehler beim Abrufen Parkplätze:', error);
+        });
 
     //SCROLLFUNKTION ZUR KARTE BEI KLICK AUF PFEIL
 
@@ -150,70 +150,91 @@ fetch(apiUrl)
     });
 
 
-    //SLIDER FÜR DIE UHRZEIT
     const slider = document.getElementById('slider');
     const sliderHandle = document.getElementById('slider-handle');
     const timeDisplay = document.getElementById('time');
-
-    // Funktion zur Aktualisierung der Uhrzeit basierend auf der Position des Sliders
+    
+    // Funktion zur Berechnung der Uhrzeit basierend auf der Position des Handles
     function updateTime() {
         const sliderWidth = slider.offsetWidth;
         const handleWidth = sliderHandle.offsetWidth;
         const handlePosition = parseFloat(sliderHandle.style.left) || (sliderWidth - handleWidth);
-
-        // Berechne die Stunden und Minuten basierend auf der Position des Handles
-        const totalMinutes = Math.round((handlePosition / (sliderWidth - handleWidth)) * 1439); // 0-1439 Minuten (24 Stunden * 60 Minuten)
-        const hours = Math.floor(totalMinutes / 60);
-        const minutes = totalMinutes % 60;
-
-        const timeString = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
+    
+        // Ermitteln Sie die aktuelle Uhrzeit
+        const now = new Date();
+        let currentHours = now.getHours();
+        let currentMinutes = now.getMinutes();
+    
+        // Berechne die verstrichenen Minuten basierend auf der Slider-Position
+        const totalMinutesBack = Math.round((1 - (handlePosition / (sliderWidth - handleWidth))) * 1439); // 0-1439 Minuten (24 Stunden * 60 Minuten)
+        
+        // Berechne die neue Zeit in Minuten
+        const adjustedMinutes = currentMinutes - totalMinutesBack;
+        const adjustedDate = new Date(now.getTime() - totalMinutesBack * 60 * 1000); // Reduziere die Zeit um diese Minuten
+    
+        // Extrahiere die Stunden und Minuten für die Anzeige
+        const adjustedHours = adjustedDate.getHours();
+        const adjustedMinutesFormatted = adjustedDate.getMinutes();
+    
+        // Anzeigeformat HH:MM
+        const timeString = `${adjustedHours.toString().padStart(2, '0')}:${adjustedMinutesFormatted.toString().padStart(2, '0')}`;
         timeDisplay.innerText = timeString;
     }
-
-
+    
     // Funktion zum Draggen des Sliders
     function onMouseMove(event) {
         const sliderRect = slider.getBoundingClientRect();
         let newLeft = event.clientX - sliderRect.left - (sliderHandle.offsetWidth / 2);
-
+    
         // Begrenzen der Position des Handles
         if (newLeft < 0) newLeft = 0;
         if (newLeft > sliderRect.width - sliderHandle.offsetWidth) newLeft = sliderRect.width - sliderHandle.offsetWidth;
-
+    
         sliderHandle.style.left = newLeft + 'px';
         updateTime();
     }
-
+    
     // Maus-Events für den Slider
     sliderHandle.addEventListener('mousedown', () => {
         document.addEventListener('mousemove', onMouseMove);
     });
-
+    
     document.addEventListener('mouseup', () => {
         document.removeEventListener('mousemove', onMouseMove);
     });
-
+    
     // Initialisierung der Position und Uhrzeit
     function initializeSlider() {
+        // Berechne die Breite des Sliders und des Handles
+        const sliderWidth = slider.offsetWidth;
+        const handleWidth = sliderHandle.offsetWidth;
+    
+        // Positioniere den Handle ganz rechts am Slider
+        sliderHandle.style.left = (sliderWidth - handleWidth) + 'px';
+    
+        // Aktualisiere die Zeit-Anzeige mit der aktuellen Uhrzeit
         const now = new Date();
         const currentHours = now.getHours();
         const currentMinutes = now.getMinutes();
-
-        // Berechne die Position des Sliders für die aktuelle Uhrzeit
-        const sliderWidth = slider.offsetWidth;
-        const handleWidth = sliderHandle.offsetWidth;
-
-        // Berechnung der aktuellen Position des Handles unter Berücksichtigung von Minuten
-        const totalMinutes = currentHours * 60 + currentMinutes;
-        const currentHandlePosition = (totalMinutes / 1440) * (sliderWidth - handleWidth); // 1440 Minuten in einem Tag
-        sliderHandle.style.left = currentHandlePosition + 'px';
-
-        // Aktualisiere die Zeit-Anzeige
-        updateTime();
+        const timeString = `${currentHours.toString().padStart(2, '0')}:${currentMinutes.toString().padStart(2, '0')}`;
+        timeDisplay.innerText = timeString;
+    
+        console.log("Slider Width:", sliderWidth);
+        console.log("Handle Width:", handleWidth);
+        console.log("Handle Position (should be right):", sliderHandle.style.left);
     }
+    
+    // Initialisiere den Slider bei Seitenlade-Event und bei Fenstergrößenänderung
+    window.addEventListener('load', initializeSlider);
+    window.addEventListener('resize', initializeSlider);
+    
+   
+    
+    
+  
+    
 
-    // Rufe die Initialisierungsfunktion auf
-    initializeSlider();
+
 
     // KALENDER AKTUELLES DATUM
     window.onload = function () {
