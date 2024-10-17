@@ -7,7 +7,6 @@
 ## Unser Projekt:
 Unsere Webseite sammelt Daten von zwei APIs: einerseits von den Passanten an der Vadianstrasse in St. Gallen und andererseits von der Belegung der Parkhäuser in der Stadt. Besucher der Webseite können auf einen Blick erkennen, wie belebt die Stadt aktuell ist und wo sie am besten einen freien Parkplatz in den umliegenden Parkhäusern finden können. Zudem wird in der textlichen Auswertung angezeigt, ob die Auslastung in St. Gallen tendenziell höher oder niedriger ist als gewöhnlich.
 
-
 ## Learnings
 - Verwendung von SQL mit PHP 
 - Einbindung von API's in Datenbanken 
