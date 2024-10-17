@@ -153,86 +153,110 @@ document.addEventListener('DOMContentLoaded', function () {
     const slider = document.getElementById('slider');
     const sliderHandle = document.getElementById('slider-handle');
     const timeDisplay = document.getElementById('time');
-    
-    // Funktion zur Berechnung der Uhrzeit basierend auf der Position des Handles
+
     function updateTime() {
         const sliderWidth = slider.offsetWidth;
         const handleWidth = sliderHandle.offsetWidth;
         const handlePosition = parseFloat(sliderHandle.style.left) || (sliderWidth - handleWidth);
-    
+
         // Ermitteln Sie die aktuelle Uhrzeit
         const now = new Date();
-        let currentHours = now.getHours();
-        let currentMinutes = now.getMinutes();
-    
+
+        const currentHours = now.getHours();
+
         // Berechne die verstrichenen Minuten basierend auf der Slider-Position
         const totalMinutesBack = Math.round((1 - (handlePosition / (sliderWidth - handleWidth))) * 1439); // 0-1439 Minuten (24 Stunden * 60 Minuten)
-        
+
         // Berechne die neue Zeit in Minuten
-        const adjustedMinutes = currentMinutes - totalMinutesBack;
         const adjustedDate = new Date(now.getTime() - totalMinutesBack * 60 * 1000); // Reduziere die Zeit um diese Minuten
-    
+
         // Extrahiere die Stunden und Minuten für die Anzeige
         const adjustedHours = adjustedDate.getHours();
         const adjustedMinutesFormatted = adjustedDate.getMinutes();
-    
+
         // Anzeigeformat HH:MM
         const timeString = `${adjustedHours.toString().padStart(2, '0')}:${adjustedMinutesFormatted.toString().padStart(2, '0')}`;
         timeDisplay.innerText = timeString;
+
+        
+
+        // Überprüfe, ob die Uhrzeit 23:59 oder weniger ist
+        if (adjustedHours > currentHours ) {
+
+            console.log("we're in the past day!");
+
+            // Wenn die angepasste Zeit 23:59 oder mehr ist, setze das Datum auf den Vortag
+            const selectedDate = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+            selectedDate.setDate(selectedDate.getDate() - 1); // Datum um einen Tag zurücksetzen
+
+            const day = String(selectedDate.getDate()).padStart(2, '0');
+            const month = String(selectedDate.getMonth() + 1).padStart(2, '0'); // Monate sind 0-basiert
+            const year = selectedDate.getFullYear();
+
+            const newDateString = `${year}-${month}-${day}`;
+            document.getElementById('datePicker').value = newDateString; // Aktualisiere das Datum im Kalender
+
+            
+
+        } else {
+        //Setze Datum auf den aktuellen Tag
+        const currentDate = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
+        document.getElementById('datePicker').value = currentDate; // Setze zurück auf das aktuelle Datum
+        }
     }
-    
+
     // Funktion zum Draggen des Sliders
     function onMouseMove(event) {
         const sliderRect = slider.getBoundingClientRect();
         let newLeft = event.clientX - sliderRect.left - (sliderHandle.offsetWidth / 2);
-    
+
         // Begrenzen der Position des Handles
         if (newLeft < 0) newLeft = 0;
         if (newLeft > sliderRect.width - sliderHandle.offsetWidth) newLeft = sliderRect.width - sliderHandle.offsetWidth;
-    
+
         sliderHandle.style.left = newLeft + 'px';
         updateTime();
     }
-    
+
     // Maus-Events für den Slider
     sliderHandle.addEventListener('mousedown', () => {
         document.addEventListener('mousemove', onMouseMove);
     });
-    
+
     document.addEventListener('mouseup', () => {
         document.removeEventListener('mousemove', onMouseMove);
     });
-    
+
     // Initialisierung der Position und Uhrzeit
     function initializeSlider() {
         // Berechne die Breite des Sliders und des Handles
         const sliderWidth = slider.offsetWidth;
         const handleWidth = sliderHandle.offsetWidth;
-    
+
         // Positioniere den Handle ganz rechts am Slider
         sliderHandle.style.left = (sliderWidth - handleWidth) + 'px';
-    
+
         // Aktualisiere die Zeit-Anzeige mit der aktuellen Uhrzeit
         const now = new Date();
         const currentHours = now.getHours();
         const currentMinutes = now.getMinutes();
         const timeString = `${currentHours.toString().padStart(2, '0')}:${currentMinutes.toString().padStart(2, '0')}`;
         timeDisplay.innerText = timeString;
-    
+
         console.log("Slider Width:", sliderWidth);
         console.log("Handle Width:", handleWidth);
         console.log("Handle Position (should be right):", sliderHandle.style.left);
     }
-    
+
     // Initialisiere den Slider bei Seitenlade-Event und bei Fenstergrößenänderung
     window.addEventListener('load', initializeSlider);
     window.addEventListener('resize', initializeSlider);
-    
-   
-    
-    
-  
-    
+
+
+
+
+
+
 
 
 
