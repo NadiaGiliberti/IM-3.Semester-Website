@@ -637,10 +637,39 @@ p {
         margin-bottom: 2vh;
     }
 
-    .timecalendar {
-        margin-top: 0.2vw;
-        /* Abstand zwischen Slider und Zeitkalender */
+    @media screen and (max-width: 576px) {
+        .timecalendar {
+            display: flex;
+            flex-direction: column-reverse; /* Elemente in Spalte anordnen */
+            align-items: center; /* Elemente zentrieren */
+        }
+    
+        .calendar-container {
+            display: flex;
+            justify-content: center; /* Kalender innerhalb des Containers zentrieren */
+            width: 100%; /* Sicherstellen, dass der Container die volle Breite hat */
+        }
+    
+        .calendar-input {
+            width: 100%; /* Optional: volle Breite */
+            max-width: 25vw; /* Maximalbreite, damit es nicht zu breit wird */
+            border-radius: 2.5vw;
+            box-sizing: border-box; /* Damit Padding und Border in der Breite enthalten sind */
+            margin: 0; /* Sicherstellen, dass es keinen zusätzlichen Rand hat */
+            margin-top: 1vw;
+            font-size: 3vw;
+        
+        }
+
+        .time {
+            padding-right: 0;
+            font-size: 4vw;
+        }
     }
+    
+ 
+    
+   
 
     /* AB HIER JOURNALISTISCHER BEITRAG + BILDER */
 
