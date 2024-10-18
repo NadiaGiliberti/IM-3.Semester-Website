@@ -161,7 +161,7 @@ document.addEventListener('DOMContentLoaded', function () {
         } else if (totalParkplaetze > erwarteteParkplaetze * (1 + toleranz)) {
             return "viele";
         } else {
-            return "gleich viele";
+            return "normal viele";
         }
     }
 
