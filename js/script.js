@@ -190,52 +190,60 @@ document.addEventListener('DOMContentLoaded', function () {
         const sliderWidth = slider.offsetWidth;
         const handleWidth = sliderHandle.offsetWidth;
         const handlePosition = parseFloat(sliderHandle.style.left) || (sliderWidth - handleWidth);
-
-        // Ermitteln Sie die aktuelle Uhrzeit
+    
         const now = new Date();
-
         const currentHours = now.getHours();
-
+        const currentMinutes = now.getMinutes();
+    
         // Berechne die verstrichenen Minuten basierend auf der Slider-Position
         const totalMinutesBack = Math.round((1 - (handlePosition / (sliderWidth - handleWidth))) * 1439); // 0-1439 Minuten (24 Stunden * 60 Minuten)
-
+    
         // Berechne die neue Zeit in Minuten
         const adjustedDate = new Date(now.getTime() - totalMinutesBack * 60 * 1000); // Reduziere die Zeit um diese Minuten
-
+    
         // Extrahiere die Stunden und Minuten für die Anzeige
         const adjustedHours = adjustedDate.getHours();
         const adjustedMinutesFormatted = adjustedDate.getMinutes();
-
+    
         // Anzeigeformat HH:MM
         const timeString = `${adjustedHours.toString().padStart(2, '0')}:${adjustedMinutesFormatted.toString().padStart(2, '0')}`;
         timeDisplay.innerText = timeString;
-
-
-
+    
+        // Hier prüfen, ob wir auf das aktuelle Datum (jetzt) stehen
+        if (handlePosition >= (sliderWidth - handleWidth)) {
+            // Slider ist ganz rechts; also nichts ändern, kein Datum zurücksetzen
+            return;
+        }
+    
+        // Wenn die neue Zeit weniger als 24 Stunden von jetzt ist
+        if (totalMinutesBack < 1440) {
+            // Überprüfen, ob die angepasste Zeit das aktuelle Datum übersteigt
+            if (adjustedHours === currentHours && adjustedMinutesFormatted >= currentMinutes) {
+                return; // Verhindern, dass das Datum geändert wird
+            }
+        }
+    
         // Überprüfe, ob die Uhrzeit 23:59 oder weniger ist
-        if (adjustedHours > currentHours) {
-
+        if (adjustedHours > currentHours || (adjustedHours === currentHours && adjustedMinutesFormatted >= currentMinutes)) {
             console.log("we're in the past day!");
-
-            // Wenn die angepasste Zeit 23:59 oder mehr ist, setze das Datum auf den Vortag
+    
+            // Setze das Datum auf den Vortag
             const selectedDate = new Date(now.getFullYear(), now.getMonth(), now.getDate());
             selectedDate.setDate(selectedDate.getDate() - 1); // Datum um einen Tag zurücksetzen
-
+    
             const day = String(selectedDate.getDate()).padStart(2, '0');
             const month = String(selectedDate.getMonth() + 1).padStart(2, '0'); // Monate sind 0-basiert
             const year = selectedDate.getFullYear();
-
+    
             const newDateString = `${year}-${month}-${day}`;
             document.getElementById('datePicker').value = newDateString; // Aktualisiere das Datum im Kalender
-
-
-
         } else {
-            //Setze Datum auf den aktuellen Tag
+            // Setze Datum auf den aktuellen Tag
             const currentDate = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
             document.getElementById('datePicker').value = currentDate; // Setze zurück auf das aktuelle Datum
         }
     }
+    
 
      // Funktion zum Draggen des Sliders mit Maus und Touch
     function onMove(event) {
