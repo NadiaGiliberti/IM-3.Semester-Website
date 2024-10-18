@@ -13,15 +13,15 @@ Unsere Webseite sammelt Daten von zwei APIs: einerseits von den Passanten an der
 - Wissen vertieft in html, css und js
 - Zeitgleich im css an einer OnePager-Webseite arbeiten sollte vermieden werden 
 
-## SCHWIERIGKEITEN
+## SCHWIERIGKEITEN:
 Eine der grössten Herausforderungen für uns war die Auswahl einer oder zweier geeigneter APIs, die nicht bereits von einem anderen Team verwendet wurden. Auch stellte uns die Anforderung, einen journalistischen Mehrwert zu finden, vor einige Schwierigkeiten. 
 Das gleichzeitige Arbeiten an einem One-Pager, ohne uns gegenseitig in die Quere zu kommen, beansprucht viel Zeit für Absprachen. Aber auch dann, kann man Fehlermeldungen nur schwer vermeiden.
 
-## BENUTZTE RESSOURCEN
+## BENUTZTE RESSOURCEN:
 - [ChatGPT](https://chat.openai.com)
 - [W3Schools](https://www.w3schools.com)
 - Coachings 
 - Übungen aus dem Unterricht / Hilfsmittel auf Moodle
 
-## BEWUSSTE BUGS
+## BEWUSSTE BUGS:
 Wenn der User auf der interaktiven Karte das Datum zuerst wählt und dann erst die damalige Uhrzeit einstellen möchte, wird der Kalender wieder auf das Tagesdatum zurückgesetzt. Dieser Fehler ist uns bekannt. Nach mehreren erfolglosen Behebungsversuchen, haben wir uns dafür entschieden, es so zu belassen, da die Daten mit umgekehrter Reihenfolge (zuerst Zeit und dann Datum wählen) ausgelesen werden können.
